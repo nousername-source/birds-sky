@@ -36,6 +36,10 @@ If GitHub warns about a large file, do not remove files from `public/assets/mode
 4. Click **Deploy**. When the build completes, open the generated `*.vercel.app` address.
 5. To use your own domain, open the project’s **Settings → Domains** and follow the DNS instructions shown there.
 
+## If you deployed an earlier ZIP and the 3D models are missing
+
+The original ignore rules excluded `public/assets/models/*.glb` from Git, so the app shell could deploy while model requests returned 404. Use this corrected bundle. Copy its files over the same cloned repository and replace `.gitignore`; in GitHub Desktop confirm that the files under `public/assets/models/` appear as added/changed. Commit and push those files. Vercel will redeploy automatically. Once deployment finishes, the model URLs should return HTTP 200 instead of 404.
+
 ## Updating the live site later
 
 Edit files in your local cloned repository, commit the changes in GitHub Desktop, and click **Push origin**. Netlify or Vercel will detect the new commit and deploy it.
