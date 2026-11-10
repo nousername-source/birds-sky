@@ -1,0 +1,48 @@
+node_modules/
+dist/
+shots/
+/.manus-webdev/preview-identity.json
+# Assets restored from assets.lock.json
+/assets/models/birdssky-bluebird-rigged.glb
+/assets/models/birdssky-bluebird.glb
+# Assets restored from assets.lock.json
+/assets/share/favicon.png
+# Assets restored from assets.lock.json
+/assets/models/birdssky-bluebird-wing-rigged.glb
+# Assets restored from assets.lock.json
+/assets/catalog/birds/birds-and-flying-creatures-atlantic-puffin-de3d4a5f.glb
+/assets/models/birdssky-winged-bluebird-rigged.glb
+/assets/models/birdssky-winged-bluebird.glb
+
+public/assets/models/birdssky-winged-bluebird-rigged.glb
+public/assets/models/birdssky-winged-bluebird-rigged-colored.glb
+assets/models/birdssky-winged-bluebird-rigged.glb
+assets/models/birdssky-winged-bluebird.glb
+assets/catalog/
+# Assets restored from assets.lock.json
+/assets/models/birdssky-winged-bluebird-rigged-colored.glb
+# Assets restored from assets.lock.json
+/assets/candidates/birds-and-flying-creatures-blackbird-ad35e64d.glb
+/assets/candidates/birds-and-flying-creatures-blue-tit-791a5759.glb
+/assets/candidates/birds-and-flying-creatures-european-robin-ce1b6f7a.glb
+/assets/candidates/birds-and-flying-creatures-goldfinch-41eb8dae.glb
+/assets/candidates/birds-and-flying-creatures-house-sparrow-db38eddb.glb
+/assets/candidates/birds-and-flying-creatures-wren-b54a1c40.glb
+/assets/models/birdssky-american-robin.glb
+public/assets/models/birdssky-american-robin.glb
+# Assets restored from assets.lock.json
+/assets/models/scenery-forest/dense-temperate-forest-flora-meadow-grass-clump-9922893b.glb
+/assets/models/scenery-forest/dense-temperate-forest-flora-stream-bend-74db45b2.glb
+public/assets/models/scenery-forest/*.glb
+# Assets restored from assets.lock.json
+/assets/models/scenery-kenney/birdssky-kenney-tree-high.glb
+/assets/models/scenery-kenney/birdssky-kenney-tree.glb
+public/assets/models/scenery-kenney/*.glb
+# Assets restored from assets.lock.json
+/assets/models/birdssky-alex-songbird.glb
+/assets/models/birdssky-hawk.glb
+public/assets/models/birdssky-alex-songbird.glb
+public/assets/models/birdssky-hawk.glb
+# Assets restored from assets.lock.json
+# Assets restored from assets.lock.json
+/assets/models/birdssky-cloud-soft.glb

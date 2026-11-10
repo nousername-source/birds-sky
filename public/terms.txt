@@ -1,0 +1,2953 @@
+# BIRDSSKY — GAME WORD BANK AND SCORING SPECIFICATION
+# Dataset audit: 430 objects; answer counts vary by object (9–13 in this file).
+# The original 330-object import is followed by 100 appended objects (source noted below).
+# All category score values are preserved exactly from the supplied source; this pass does not invent new scores.
+# Score bands: Common 100–199; Rare 200–399; Extreme 400–599; Eagle 600–800. Score 0 means invalid.
+# Altitude conversion: altitude_units = score * 0.12 (100 points = 12 units); do not round unless the game UI requires it.
+# Category counts are not fixed: do not assume every object has exactly ten answers.
+#
+# RECOMMENDED ANSWER-VALIDATION RULES
+# 1. A category must be a real, recognizable class/type that the object itself belongs to.
+#    A mere association, use, location, audience, material, component, or setting is not enough.
+# 2. Judge the object's ordinary/default form. Do not assume a material, feature, or use not stated in the prompt.
+# 3. Rarity is not the same as technicality. Long, obscure-sounding, or highly qualified phrases do not earn points by themselves.
+# 4. A category must be independently established and meaningful; reject invented taxonomies, word salad,
+#    arbitrary adjective combinations, tautologies, and categories that only describe one possible instance.
+# 5. A narrower category is eligible only when it is a recognized subclass and the object genuinely qualifies.
+#    Do not reward a phrase merely because it adds constraints (e.g. colour, location, owner, or imagined context).
+# 6. Score a valid answer using its object-specific canonical entry. Do not generate a fresh score at runtime.
+#    The same category may have different scores for different objects only if the scoring design intentionally
+#    measures rarity relative to that particular object; keep this object-specific rule consistent.
+# 7. Normalize harmless formatting differences (case, leading/trailing spaces, repeated spaces, hyphenation).
+#    Treat synonyms, abbreviations, and spelling variants as aliases only when explicitly approved in an alias list.
+# 8. If an answer is not in the bank but appears valid, send it to review rather than letting an AI invent a score.
+#    Add approved answers to the bank with a documented score before awarding points.
+# 9. Invalid, unrelated, unsupported, or fabricated categories score 0. Never clamp an invalid answer to 100.
+# 10. Do not infer a score from the tier label alone; use the exact numeric value attached to the accepted category.
+# 11. Before release, test each object with ordinary players and record how often each category is independently named.
+#     Use those response rates to recalibrate rarity scores; treat the current values as provisional editorial scores,
+#     not measured population frequencies, unless the source data proves otherwise.
+#
+# DATA-INTEGRITY NOTES
+# - The supplied file contains 430 objects, not 330.
+# - Category counts vary from 9 to 13; the old 'all ten answers' claim was inaccurate.
+# - 'Common' is used as the normalized field name throughout (the source had two heading variants).
+# - The dataset is structurally parseable: every category entry has a numeric score in its stated score band;
+#   no duplicate category names were found within an individual object.
+# - Some objects intentionally/incidentally have no Eagle entry or no Extreme entry; absence is not a zero-score answer.
+#
+Word: Acoustic Guitar
+Theme: Imported object
+Common: Musical instrument=100, Guitar=140
+Rare: Plucked-string instrument=260, Fretted instrument=300, Acoustic instrument=200, Chordophone=340
+Extreme: Polyphonic instrument=400, Composite chordophone=540
+Eagle: Necked lute=640, Box lute=720
+
+Word: Coffee Mug
+Theme: Imported object
+Common: Mug=160, Container=100, Cup=190, Household goods=140
+Rare: Drinkware=390, Beverage container=360, Kitchenware=260, Tableware=320
+Extreme: Hollowware=540, Food-service ware=430
+Eagle: Food-contact article=650
+
+Word: Bicycle
+Theme: Imported object
+Common: Machine=100, Vehicle=160, Cycle=180
+Rare: Transport equipment=200, Land vehicle=260, Wheeled vehicle=320
+Extreme: Non-motorized vehicle=420, Two-wheeled vehicle=500
+Eagle: Pedal-powered vehicle=620, Single-track vehicle=700
+
+Word: Smartphone
+Theme: Imported object
+Common: Electronic device=120, Consumer electronics product=180
+Rare: Computing device=320, Mobile device=280, Communication device=240
+Extreme: Multimedia device=450, Telecommunications equipment=510, Network endpoint=580
+Eagle: Mobile phone=650, Radio transceiver=720
+
+Word: Ballpoint Pen
+Theme: Imported object
+Common: Pen=180, Communication tool=140
+Rare: Stationery item=390, Marking tool=250, Ink pen=310
+Extreme: Writing instrument=560, Office supply=480, School supply=470, Art supply=580
+Eagle: Drawing instrument=620
+
+Word: Wooden Chair
+Theme: Imported object
+Common: Furniture=100, Chair=130, Seating furniture=180
+Rare: Wood products=320, Household goods=220
+Extreme: Wooden furniture=510, Durable goods=400, Tangible personal property=580
+Eagle: Hardlines=640, Material culture artifacts=720
+
+Word: Stainless Steel Water Bottle
+Theme: Imported object
+Common: Container=100, Water bottle=180, Bottle=150
+Rare: Drinkware=330, Kitchenware=280, Beverage container=240
+Extreme: Metal container=510, Hydration equipment=450
+Eagle: Food-contact article=650, Hollowware=720
+
+Word: Laptop Computer
+Theme: Imported object
+Common: Computer=110, Electronic device=100, Consumer electronics=190
+Rare: Personal computer=340, Information technology equipment=280, Computing hardware=240
+Extreme: Portable computer=470, General-purpose computer=560, Digital computer=520
+Eagle: Microcomputer=650
+
+Word: Running Shoes
+Theme: Imported object
+Common: Footwear=120, Apparel=150
+Rare: Sportswear=350, Sporting goods=240, Shoes=200, Personal effects=280
+Extreme: Soft goods=430, Fashion accessories=470
+Eagle: Athletic footwear=650, Semi-durable goods=720
+
+Word: Ceramic Dinner Plate
+Theme: Imported object
+Common: Tableware=170, Household goods=110, Kitchenware=150, Durable goods=130
+Rare: Plates=330, Dinnerware=270, Food-service equipment=390
+Extreme: Ceramic ware=450, Food-contact articles=540
+Eagle: Nonmetallic mineral products=620
+
+Word: Flashlight
+Theme: Imported object
+Common: Electrical device=130, Tool=170, Household equipment=190
+Rare: Lighting equipment=250, Artificial light source=310, Handheld device=240, Portable appliance=280, Electrical load=350
+Extreme: Luminaire=420
+Eagle: Portable electric light=650
+
+Word: Pocket Knife
+Theme: Imported object
+Common: Tool=100, Hand tool=180, Hardware=120
+Rare: Cutting tool=240, Knife=300, Edged tool=280, Cutlery=200
+Extreme: Folding knife=450, Everyday carry item=550, Pocket tool=480
+
+Word: Compass
+Theme: Imported object
+Common: Instrument=110
+Rare: Magnetic instrument=350, Direction indicator=280, Measuring instrument=240, Scientific instrument=310
+Extreme: Navigation instrument=420, Surveying instrument=570, Orienteering equipment=540, Passive sensor=470, Survival=560
+Eagle: Magnetic sensor=630
+
+Word: Thermometer
+Theme: Imported object
+Common: Device=120, Instrument=180
+Rare: Scientific instrument=310, Laboratory equipment=350, Sensor=390, Test equipment=290
+Extreme: Measuring instrument=430, Indicating instrument=580
+Eagle: Temperature sensor=720, Transducer=610
+
+Word: Magnifying Glass
+Theme: Imported object
+Common: Hand tool=180
+Rare: Optical instrument=240, Lens=280, Visual aid=340, Reading aid=390, Scientific instrument=320
+Extreme: Inspection tool=420
+Eagle: Convex lens=610, Simple microscope=740, Refractive optical element=650
+
+Word: Tennis Racket
+Theme: Imported object
+Common: Sports equipment=120, Rackets=180, Recreational equipment=150
+Rare: Striking implements=310, Ball-game equipment=280, Court-sport equipment=390
+Extreme: Racket-sport equipment=540, Net-sport equipment=450
+Eagle: Tennis equipment=730, Stringed rackets=620
+
+Word: Basketball
+Theme: Imported object
+Common: Ball=120, Sports equipment=180, Game equipment=160, Recreational equipment=100
+Rare: Sports ball=360, Physical education equipment=300
+Extreme: Team-sport equipment=480, Ball-game equipment=420, Inflatable ball=560
+Eagle: Court-sport equipment=620
+
+Word: Skateboard
+Theme: Imported object
+Common: sports equipment=150, recreational equipment=120, transportation equipment=180
+Rare: vehicle=200, personal mobility device=380, wheeled vehicle=320
+Extreme: human-powered vehicle=450, action-sports equipment=570
+Eagle: wheeled board=740, board-sport equipment=650
+
+Word: Hammer
+Theme: Imported object
+Common: Tool=100, Hardware=140
+Rare: Hand tool=220, Non-powered tool=280, Blunt instrument=360, Workshop tool=320
+Extreme: Carpentry tool=540, Construction tool=420
+Eagle: Striking tool=650, Fastening tool=600
+
+Word: Wrench
+Theme: Imported object
+Common: tool=100, hardware=160
+Rare: hand tool=220, simple machine=320, workshop equipment=260
+Extreme: fastening tool=480, mechanic's tool=420, torque tool=580, gripping tool=520
+Eagle: lever=650
+
+Word: Garden Trowel
+Theme: Imported object
+Common: Tool=100, Hand tool=180, Hardware=140
+Rare: Trowel=260, Gardening tool=380, Digging tool=340, Landscaping tool=300, Agricultural implement=240
+Extreme: Planting tool=460, Soil cultivation tool=500
+
+Word: Kettle
+Theme: Imported object
+Common: Household item=110, Kitchenware=180, Container=140
+Rare: Kitchen utensil=240, Cookware=320, Food preparation equipment=280
+Extreme: Boiling vessel=570, Pouring vessel=430, Hollowware=490
+Eagle: Water-heating device=610
+
+Word: Dutch Oven
+Theme: Imported object
+Common: kitchen equipment=170, household equipment=110
+Rare: cookware=290, kitchenware=210, cooking vessel=360, food preparation equipment=240
+Extreme: pot=470, hollowware=590, ovenware=560, stovetop cookware=520
+
+Word: Dinner Fork
+Theme: Imported object
+Common: Utensil=180, Household good=120, Tool=100
+Rare: Kitchenware=330, Handheld implement=260
+Extreme: Tableware=450, Food-contact article=520, Eating utensil=560
+Eagle: Cutlery=620, Fork=700
+
+Word: Violin
+Theme: Imported object
+Common: Musical instrument=100, String instrument=180
+Rare: Bowed string instrument=380, Orchestral instrument=280, Acoustic instrument=200, Pitched instrument=220, Melody instrument=300
+Extreme: Violin-family instrument=580, Fretless string instrument=460
+Eagle: Necked box lute=780
+
+Word: Binoculars
+Theme: Imported object
+Common: optical instrument=100, visual aid=180
+Rare: telescope=380, observation equipment=240, magnifying instrument=300
+Extreme: refracting telescope=570, passive optical device=450, imaging optical system=520
+Eagle: stereoscopic instrument=650, afocal optical system=760
+
+Word: Stethoscope
+Theme: Imported object
+Common: Medical device=120, Handheld instrument=170
+Rare: Diagnostic instrument=240, Acoustic instrument=370, Clinical examination equipment=280, Listening device=330, Portable medical equipment=210
+Extreme: Non-invasive medical device=450, Reusable medical device=410
+Eagle: Auscultation device=690
+
+Word: Umbrella
+Theme: Imported object
+Common: Mechanical device=180, Household item=150
+Rare: Personal accessory=240, Outdoor equipment=330, Protective equipment=390, Handheld object=210
+Extreme: Canopy=560, Weather protection device=490
+Eagle: Rain gear=610, Collapsible structure=680
+
+Word: Carabiner
+Theme: Imported object
+Common: Hardware=140
+Rare: Connectors=230, Fasteners=260, Outdoor recreation equipment=320
+Extreme: Climbing equipment=530, Rigging hardware=570, Safety equipment=410, Mountaineering equipment=590
+Eagle: Shackles=650, Spring-gate connectors=760
+
+Word: USB Flash Drive
+Theme: Imported object
+Common: Computer hardware=160, Electronic device=100
+Rare: Removable storage device=350, Computer peripheral=240, USB device=390, Data storage device=280
+Extreme: Nonvolatile memory device=500, Solid-state storage device=590
+Eagle: Flash memory device=680, USB mass storage device=770
+
+Word: Leather Wallet
+Theme: Imported object
+Common: wallet=120, container=180
+Rare: personal effect=240, fashion accessory=350, case=280, personal accessory=310
+Extreme: everyday carry item=430, leather good=510, money holder=580
+Eagle: small leather good=650
+
+Word: Digital Camera
+Theme: Imported object
+Common: Camera=100, Electronic device=160
+Rare: Photographic equipment=380, Consumer electronics=220, Recording device=280
+Extreme: Optical instrument=460, Imaging device=420, Data acquisition device=540
+Eagle: Embedded system=620, Optoelectronic device=700
+
+Word: Desk Lamp
+Theme: Imported object
+Common: Lighting fixture=180, Consumer durable=150, Light source=120
+Rare: Electrical appliance=250, Interior furnishing=210, Office equipment=360
+Extreme: Desk accessory=480, Electrical load=550
+Eagle: Task lighting=610, Portable luminaire=720
+
+Word: Mechanical Pencil
+Theme: Imported object
+Common: Pencil=180, Stationery item=160, Mechanical device=120
+Rare: Writing instrument=360, Office supply=210, Hand tool=300, School supply=250, Art supply=280
+Extreme: Drawing instrument=500
+Eagle: Drafting instrument=680
+
+Word: Backpack
+Theme: Imported object
+Common: Bag=100, Container=120
+Rare: Luggage=280, Personal accessory=200, Wearable item=240, Carrying equipment=340, Travel accessory=360
+Extreme: Soft goods=480, Textile product=440
+Eagle: Sewn product=620
+
+Word: Electric Toothbrush
+Theme: Imported object
+Common: toothbrush=160, brush=100
+Rare: healthcare product=260, hygiene product=340, cleaning tool=200, small domestic appliance=380
+Extreme: electromechanical device=420, personal care appliance=560, dental equipment=500
+Eagle: oral hygiene device=680
+
+Word: Wristwatch
+Theme: Imported object
+Common: watch=140, personal effects=170
+Rare: measuring instrument=350, wearable device=280, timekeeping device=320, jewelry=390, durable good=200
+Extreme: fashion accessory=410, precision instrument=510
+Eagle: wristwear=620
+
+Word: Headphones
+Theme: Imported object
+Common: electrical equipment=100, consumer electronics=180, electronic device=140
+Rare: audio equipment=260, wearable electronics=340, audio accessory=300
+Extreme: audio output device=430, personal audio device=510
+Eagle: electrical load=650, electroacoustic transducer=760
+
+Word: Scissors
+Theme: Imported object
+Common: Tool=120, Hand tool=190, Household item=160
+Rare: Cutting tool=270, Stationery=310, Office supply=250, Mechanical device=230
+Extreme: Compound machine=540, Shearing tool=450
+Eagle: First-class lever=620
+
+Word: Stapler
+Theme: Imported object
+Common: Office supply=180, Mechanical device=100, Hand tool=160
+Rare: Stationery=220, Desk accessory=320, Office equipment=240
+Extreme: Fastening tool=460, Binding equipment=540, Paper-handling equipment=420
+Eagle: Compound machine=640
+
+Word: Notebook
+Theme: Imported object
+Common: Office supply=100, Stationery=160, Paper product=120, School supply=180
+Rare: Book=200, Writing material=260, Information medium=300
+Extreme: Note-taking tool=520
+Eagle: Blank book=680, Bound stationery=600
+
+Word: Reading Glasses
+Theme: Imported object
+Common: Eyewear=160, Personal accessory=130
+Rare: Spectacles=210, Optical device=280, Assistive technology=380, Wearable device=240
+Extreme: Vision-correction device=470, Ophthalmic device=580, Medical device=420
+Eagle: Near-vision aid=650
+
+Word: Toaster
+Theme: Imported object
+Common: Appliance=100, Household appliance=180, Consumer durable good=150
+Rare: Kitchen appliance=280, Cooking appliance=390, Small appliance=330, Electrical appliance=220
+Extreme: Countertop appliance=450
+Eagle: Electrothermal appliance=610, Resistive heating device=700
+
+Word: Blender
+Theme: Imported object
+Common: household appliance=140, electrical appliance=180, kitchen equipment=120
+Rare: kitchen appliance=240, small appliance=340, electromechanical equipment=300
+Extreme: food-processing equipment=480, mixing machine=560, rotating machinery=420
+Eagle: size-reduction equipment=680
+
+Word: Yoga Mat
+Theme: Imported object
+Common: Sporting goods=140, Mats=110, Floor coverings=180
+Rare: Fitness equipment=230, Exercise accessories=360, Gym equipment=290, Padding=210, Training aids=320
+Extreme: Exercise mats=570
+Eagle: Yoga equipment=650
+
+Word: Dumbbell
+Theme: Imported object
+Common: Sporting goods=120, Exercise equipment=180
+Rare: Gym equipment=250, Non-powered exercise equipment=350
+Extreme: Strength training equipment=440, Handheld exercise equipment=520, Weightlifting equipment=410, Training weights=570
+Eagle: Free weights=650, Isotonic exercise equipment=710
+
+Word: Baseball Bat
+Theme: Imported object
+Common: Sports equipment=100, Game equipment=180, Recreational equipment=130
+Rare: Team sports equipment=350, Outdoor sports equipment=270, Bats=220, Field-sport equipment=390
+Extreme: Bat-and-ball sports equipment=580, Striking implement=450
+Eagle: Baseball equipment=760
+
+Word: Screwdriver
+Theme: Imported object
+Common: tool=100, hardware=160, mechanical device=130
+Rare: hand tool=220, simple machine=320
+Extreme: fastening tool=410, driving tool=480, non-cutting tool=540, torque tool=590
+Eagle: wheel-and-axle machine=680
+
+Word: Pliers
+Theme: Imported object
+Common: Tool=100, Mechanical device=160, Hardware=120
+Rare: Hand tool=240, Simple machine=320, Lever=380
+Extreme: Gripping tool=420, Metalworking tool=480, Wire-working tool=560
+Eagle: First-class lever=700
+
+Word: Tape Measure
+Theme: Imported object
+Common: Tool=100, Hand tool=180
+Rare: Measuring instrument=220, Construction tool=310, Dimensional measuring instrument=390
+Extreme: Ruler=410, Graduated scale=510, Carpentry tool=460, Mechanical measuring instrument=570
+Eagle: Length-measuring instrument=650
+
+Word: Hand Saw
+Theme: Imported object
+Common: Tool=100, Hardware=140
+Rare: Hand tool=220, Cutting tool=260, Saw=360, Bladed tool=320
+Extreme: Woodworking tool=440, Carpentry tool=480, Material-removal tool=560
+Eagle: Toothed cutting tool=620
+
+Word: Watering Hose
+Theme: Imported object
+Common: Hoses=150, Hardware=110
+Rare: Gardening equipment=360, Flexible tubing=260, Outdoor maintenance equipment=310
+Extreme: Plumbing supplies=440, Fluid-conveyance equipment=590, Lawn-care equipment=470, Horticultural supplies=540
+Eagle: Irrigation equipment=650
+
+Word: Ladder
+Theme: Imported object
+Common: Equipment=120, Hardware=180
+Rare: Tool=210, Load-bearing structure=340, Non-powered equipment=300
+Extreme: Access equipment=570, Construction equipment=410, Maintenance equipment=430, Climbing aid=510
+Eagle: Work-at-height equipment=650
+
+Word: Wheelbarrow
+Theme: Imported object
+Common: Tool=140, Vehicle=180
+Rare: Gardening equipment=350, Cart=280, Construction equipment=360, Farm implement=390
+Extreme: Material-handling equipment=430, Human-powered vehicle=560, Load carrier=470
+Eagle: Second-class lever=740
+
+Word: Tent
+Theme: Imported object
+Common: Shelter=150, Accommodation=190
+Rare: Outdoor recreation equipment=340, Dwelling=230, Sporting goods=280
+Extreme: Camping equipment=510, Temporary structure=420, Portable structure=460, Survival equipment=560
+Eagle: Textile structure=650
+
+Word: Sleeping Bag
+Theme: Imported object
+Common: Textile products=140, Sporting goods=180, Soft goods=120
+Rare: Bedding=220, Travel gear=380, Personal equipment=280
+Extreme: Outdoor recreation equipment=460
+Eagle: Camping equipment=620, Sleep systems=680, Insulated bedding=740
+
+Word: First Aid Kit
+Theme: Imported object
+Common: healthcare product=160, kit=120, assortment=100
+Rare: medical supply=330, safety equipment=290, medical equipment=350
+Extreme: emergency preparedness supply=510, rescue equipment=470, survival equipment=450
+Eagle: medical kit=620
+
+Word: Globe
+Theme: Imported object
+Common: map=140, reference tool=190, educational resource=160, visual aid=180
+Rare: scale model=280, data visualization=340, scientific model=310
+Extreme: cartographic equipment=560, geographic reference material=470, instructional model=410
+
+Word: Chess Set
+Theme: Imported object
+Common: Game equipment=160
+Rare: Board game=220, Traditional game=310, Strategy game=370
+Extreme: Abstract strategy game=580, Two-player game=420
+Eagle: Chess equipment=680, Perfect-information game=640, Deterministic game=610, Mind sport equipment=740
+
+Word: Microphone
+Theme: Imported object
+Common: Audio equipment=140, Electrical device=110, Communications equipment=190
+Rare: Input device=220, Transducer=270, Recording equipment=320, Audio production equipment=380
+Extreme: Sound sensor=510, Electromechanical device=440
+Eagle: Electroacoustic transducer=680
+
+Word: Synthesizer
+Theme: Imported object
+Common: Musical instrument=110, Electronic device=140, Electrical equipment=100
+Rare: Audio equipment=220, Music production equipment=350, Signal generator=380
+Extreme: Electronic musical instrument=530, Sound generator=420, Signal-processing device=460
+Eagle: Electrophone=620
+
+Word: Drum Kit
+Theme: Imported object
+Common: Musical instrument=120, Musical equipment=150
+Rare: Percussion instrument=240, Instrument set=360, Percussion equipment=280, Drums=210
+Extreme: Unpitched percussion instrument=510, Rhythm-section instrument=440, Composite instrument=580
+Eagle: Percussion battery=650
+
+Word: Flute
+Theme: Imported object
+Common: Musical instrument=100, Acoustic instrument=180
+Rare: Woodwind instrument=280, Aerophone=360, Melodic instrument=250, Wind instrument=200, Orchestral instrument=310
+Extreme: Monophonic instrument=420
+Eagle: Edge-blown aerophone=680, Ductless aerophone=720
+
+Word: Trumpet
+Theme: Imported object
+Common: musical instrument=100, wind instrument=160, acoustic instrument=180
+Rare: brass instrument=300, aerophone=220, pitched instrument=260, melodic instrument=240, end-blown instrument=390
+Extreme: lip-reed instrument=480
+Eagle: cup-mouthpiece instrument=620
+
+Word: Saxophone
+Theme: Imported object
+Common: musical instrument=100, wind instrument=180, acoustic instrument=160
+Rare: woodwind instrument=280, pitched instrument=220, monophonic instrument=360
+Extreme: keyed instrument=400, reed instrument=480
+Eagle: single-reed instrument=650, conical-bore instrument=720
+
+Word: Harmonica
+Theme: Imported object
+Common: Musical instrument=100, Acoustic instrument=180
+Rare: Wind instrument=220, Aerophone=300, Polyphonic instrument=350
+Extreme: Folk instrument=470, Reed instrument=420, Blues instrument=580, Mouth-blown instrument=530
+Eagle: Free-reed instrument=650
+
+Word: Tambourine
+Theme: Imported object
+Common: Musical instrument=100, Percussion instrument=150, Acoustic instrument=180
+Rare: Hand percussion instrument=290, Unpitched percussion instrument=340, Rhythm instrument=230
+Extreme: Idiophone=420, Shaken idiophone=570, Orchestral percussion instrument=460
+Eagle: Jingle rattle=680
+
+Word: Xylophone
+Theme: Imported object
+Common: musical instrument=100, percussion instrument=180, acoustic instrument=160
+Rare: pitched instrument=250, melodic instrument=230, tuned percussion instrument=390, orchestral instrument=300
+Extreme: idiophone=440, mallet percussion instrument=510
+Eagle: directly struck idiophone=650
+
+Word: Couch
+Theme: Imported object
+Common: Furniture=100, Seating=160
+Rare: Household furnishings=220, Consumer durables=310, Finished goods=260
+Extreme: Upholstered furniture=440, Lounge furniture=510, Multi-person seating=470
+Eagle: Loose furniture=610, Tangible personal property=700
+
+Word: Bookshelf
+Theme: Imported object
+Common: Durable goods=170
+Rare: Furniture=350, Household goods=220, Home furnishings=290
+Extreme: Storage furniture=510, Storage equipment=420
+Eagle: Shelving=610, Casegoods=670, Library furniture=730, Book storage=780
+
+Word: Coffee Table
+Theme: Imported object
+Common: Furniture=110, Household item=100
+Rare: Table=240, Living room furniture=330, Accent furniture=370, Freestanding furniture=290
+Extreme: Occasional table=570, Low table=490, Non-upholstered furniture=420
+Eagle: Casegoods=640
+
+Word: Dining Table
+Theme: Imported object
+Common: Furniture=100, Table=180, Household item=120, Durable goods=160
+Rare: Home furnishing=200, Freestanding furniture=380, Household equipment=260
+Extreme: Dining-room furniture=580, Non-upholstered furniture=420
+Eagle: Case goods=650
+
+Word: Floor Lamp
+Theme: Imported object
+Common: Lamp=120, Lighting fixture=170, Lighting equipment=140, Household furnishing=180
+Rare: Electrical appliance=220, Indoor lighting=310, Home accessory=240
+Extreme: Portable lighting=420, Portable appliance=460, Electrical load=540
+
+Word: Rug
+Theme: Imported object
+Common: Textile product=100, Household furnishing=180, Homeware=140
+Rare: Floor covering=200, Carpet=350, Interior design element=280
+Extreme: Home textile=460, Soft furnishing=400, Decorative textile=580
+Eagle: Textile floor covering=650
+
+Word: Curtain
+Theme: Imported object
+Common: household item=100, furnishing=180
+Rare: textile product=240, interior decoration=320, soft goods=260
+Extreme: household linen=540, soft furnishing=460, home textile=580
+Eagle: window covering=620, light-control device=680
+
+Word: Blinds
+Theme: Imported object
+Common: household item=100, home improvement product=180
+Rare: furnishing=220, building fixture=360, interior design element=280, architectural element=310
+Extreme: light-control device=570
+Eagle: window covering=740, fenestration accessory=780, shading device=650
+
+Word: Wall Clock
+Theme: Imported object
+Common: Clock=120, Household item=145, Durable good=175
+Rare: Measuring instrument=260, Furnishing=280, Office equipment=230, Display device=340, Wall fixture=390, Home decor=215
+Extreme: Horological instrument=510
+
+Word: Television
+Theme: Imported object
+Common: Electronic equipment=120, Electrical appliance=160
+Rare: Consumer electronics=250, Household appliance=220, Display device=380, Telecommunications equipment=310
+Extreme: Audiovisual equipment=440, Video equipment=490, Home entertainment equipment=560
+Eagle: Broadcast receiver=680
+
+Word: Soundbar
+Theme: Imported object
+Common: Consumer electronics=150, Electronic device=100
+Rare: Audio equipment=260, Audio output device=360, Audio-visual equipment=230
+Extreme: Home theater equipment=570, Television accessory=490, Sound reproduction equipment=400, Home audio equipment=460
+Eagle: Loudspeaker system=650
+
+Word: Streaming Device
+Theme: Imported object
+Common: Electronic device=100, Consumer electronics=180
+Rare: Computer hardware=240, Audiovisual equipment=320
+Extreme: Embedded system=580, Home entertainment equipment=400, Information appliance=540, Video equipment=460
+Eagle: Digital media player=760, Television accessory=650
+
+Word: Gaming Console
+Theme: Imported object
+Common: Consumer electronics=150, Electronic device=100
+Rare: Computer hardware=240, Home entertainment equipment=380, Computing device=280
+Extreme: Multimedia device=420, Embedded system=580, Information appliance=520
+Eagle: Video game hardware=720, Special-purpose computer=640
+
+Word: VR Headset
+Theme: Imported object
+Common: Electronic device=100, Consumer electronics=160
+Rare: Computer hardware=240, Display device=350, Audiovisual equipment=280
+Extreme: Wearable technology=430, Virtual reality device=440, Human-computer interaction device=540, Optoelectronic device=460
+Eagle: Head-mounted display=720, Virtual reality hardware=760
+
+Word: Router
+Theme: Imported object
+Common: Computer hardware=160, Electronic equipment=100
+Rare: Communications equipment=220, Networking hardware=340, Network appliances=390, Data communications equipment=300
+Extreme: Embedded systems=460, Internetworking devices=580
+Eagle: Packet switches=650, OSI Layer 3 devices=740
+
+Word: External Hard Drive
+Theme: Imported object
+Common: Computer hardware=120, Data storage device=160
+Rare: Computer peripheral=200, Hard disk drive=240, Secondary storage device=340, Mass storage device=360, External storage device=340
+Extreme: Nonvolatile storage device=410, Magnetic storage device=480, Removable storage device=440
+Eagle: Block storage device=620
+
+Word: Printer
+Theme: Imported object
+Common: Machine=120, Electronic device=180
+Rare: Computer peripheral=390, Office equipment=260, Electromechanical device=310, Computer hardware=230
+Extreme: Output device=440, Imaging equipment=560
+Eagle: Reprographic equipment=680, Printing equipment=620
+
+Word: Scanner
+Theme: Imported object
+Common: Electronic device=130, Computer hardware=190
+Rare: Input device=350, Computer peripheral=280, Office equipment=220
+Extreme: Optical instrument=450, Image acquisition device=570, Data capture device=490
+Eagle: Digitizer=650, Document imaging equipment=720
+
+Word: Projector
+Theme: Imported object
+Common: Electronic equipment=140, Office equipment=180
+Rare: Optical device=260, Audiovisual equipment=380, Imaging equipment=320
+Extreme: Display device=540, Presentation equipment=460, Output device=420
+Eagle: Optoelectronic device=680, Projection equipment=740
+
+Word: Calculator
+Theme: Imported object
+Common: Device=100, Tool=140, Machine=180
+Rare: Electronic device=280, Office equipment=340, Digital device=390
+Extreme: Computing device=500, Mathematical instrument=570
+Eagle: Embedded system=680, Arithmetic aid=620
+
+Word: Whiteboard
+Theme: Imported object
+Common: Board=100, Writing surface=180
+Rare: Office equipment=300, Stationery=250, Writing equipment=350
+Extreme: Presentation aid=460, Teaching aid=420, Display board=560, Visual aid=500
+Eagle: Visual communication medium=650
+
+Word: Eraser
+Theme: Imported object
+Common: stationery item=180, hand tool=140
+Rare: school supply=220, office supply=240, art supply=340, consumable supply=280
+Extreme: drawing tool=470, drafting supply=540, writing accessory=410
+Eagle: correction tool=650
+
+Word: Crayon
+Theme: Imported object
+Common: Art supply=120, Stationery=160, School supply=140
+Rare: Drawing tool=260, Writing implement=230, Art medium=320, Coloring implement=380
+Extreme: Dry art medium=540
+Eagle: Pigment stick=650, Wax medium=600
+
+Word: Watercolor Palette
+Theme: Imported object
+Common: Art supply=120, Palette=170
+Rare: Paint container=380, Painting accessory=290, Studio equipment=230, Fine-art equipment=330
+Extreme: Color-mixing tool=540, Mixing vessel=460, Paint-mixing surface=570
+Eagle: Watercolor equipment=680
+
+Word: Paintbrush
+Theme: Imported object
+Common: tool=100, brush=160
+Rare: hand tool=200, applicator=320, craft supply=360, bristle brush=240
+Extreme: art supply=420, painting equipment=560, mark-making tool=480
+Eagle: surface-finishing tool=620
+
+Word: Easel
+Theme: Imported object
+Common: Stand=140, Furniture=180
+Rare: Art supply=250, Artist's tool=380, Studio equipment=330
+Extreme: Painting equipment=570, Display equipment=410, Drawing equipment=510
+Eagle: Canvas holder=690, Workholding device=620
+
+Word: Canvas
+Theme: Imported object
+Common: textile=100, woven fabric=180, sheet material=140
+Rare: heavyweight fabric=300, non-pile fabric=360, single-layer fabric=320, utility fabric=260
+Extreme: plain-weave fabric=420, spun-yarn fabric=480, balanced-weave fabric=540
+
+Word: Sketchbook
+Theme: Imported object
+Common: Book=100, Paper product=150
+Rare: Stationery=200, Recording medium=250, Writing material=350, School supply=300
+Extreme: Art supply=500, Notebook=400, Creative tool=450
+Eagle: Drawing surface=650
+
+Word: Folder
+Theme: Imported object
+Common: office supply=160, container=100
+Rare: stationery item=220, school supply=200, organizational tool=340, storage product=280
+Extreme: protective enclosure=420, records management tool=580
+Eagle: document holder=650, filing accessory=720
+
+Word: Binder
+Theme: Imported object
+Common: office supply=100, stationery=160, school supply=180, storage container=120
+Rare: office equipment=200, recordkeeping supply=360, organizational tool=240
+Extreme: document organizer=420, filing accessory=480
+Eagle: loose-leaf filing system=720
+
+Word: Paperclip
+Theme: Imported object
+Common: office supply=180
+Rare: fastener=320, stationery item=200, filing supply=290, desk accessory=230, clamp=390
+Extreme: clip=450, paper fastener=570, non-threaded fastener=480, temporary fastener=530
+
+Word: Thumbtack
+Theme: Imported object
+Common: Fastener=150, Pin=180, Tack=130, Household item=110
+Rare: Office supply=230, Stationery item=260, Hardware item=210
+Extreme: Paper fastener=420, Non-threaded fastener=560, Temporary fastener=490
+
+Word: Hole Punch
+Theme: Imported object
+Common: Office equipment=180, Mechanical device=110, Office supply=160
+Rare: Hand tool=240, Desk accessory=320, Punch (tool)=360
+Extreme: Cutting tool=410, Paper-finishing equipment=550
+Eagle: Perforating tool=690, Bindery equipment=620
+
+Word: Correction Tape
+Theme: Imported object
+Common: Office supply=120, Stationery=180, School supply=150
+Rare: Desk accessory=220, Office consumable=310, Writing aid=260
+Extreme: Adhesive tape=440, Handheld applicator=530, Masking material=590
+Eagle: Document correction tool=680
+
+Word: Glue Stick
+Theme: Imported object
+Common: Adhesive=100, Stationery=180
+Rare: Office supply=240, School supply=240, Craft supply=320, Art material=280
+Extreme: Paper-crafting material=460, Water-based adhesive=540, Non-structural adhesive=580
+Eagle: Solid adhesive=650
+
+Word: Ruler
+Theme: Imported object
+Common: Tool=100, School supply=160, Stationery item=140, Office supply=180
+Rare: Measuring instrument=300, Mathematical instrument=390
+Extreme: Straightedge=430, Drafting instrument=480, Analog instrument=540
+Eagle: Material measure=720
+
+Word: Protractor
+Theme: Imported object
+Common: Tool=100, Educational tool=180, Stationery item=160
+Rare: Measuring instrument=240, Mathematical instrument=380, School supply=220, Scientific instrument=320
+Extreme: Drafting instrument=460, Engineering tool=420
+Eagle: Angle-measuring instrument=760
+
+Word: Compass Math
+Theme: Imported object
+Common: Stationery=150, Hand tool=100
+Rare: Drawing instrument=350, School supply=200, Art supply=250, Marking tool=300
+Extreme: Mathematical instrument=480, Drafting tool=420, Geometry tool=550
+Eagle: Drawing compass=650
+
+Word: Staple Remover
+Theme: Imported object
+Common: Office supply=160, Mechanical device=100
+Rare: Hand tool=240, Desk accessory=310, Office equipment=200
+Extreme: Lever mechanism=560, Paper-handling equipment=460, Compound machine=520
+Eagle: Fastener-removal tool=720, Extraction tool=610
+
+Word: Recliner
+Theme: Imported object
+Common: Furniture=110, Consumer durable=180, Household good=140, Seat=160
+Rare: Chair=220, Armchair=390, Living room furniture=330
+Extreme: Upholstered furniture=450, Lounge chair=570
+Eagle: Motion furniture=730
+
+Word: Rocking Chair
+Theme: Imported object
+Common: Furniture=130, Household goods=110, Household furnishings=170, Consumer durables=150
+Rare: Chair=320, Seating furniture=250, Domestic furniture=280
+Extreme: Single-seat furniture=470, Body-support furniture=520
+Eagle: Motion furniture=650
+
+Word: Bean Bag
+Theme: Imported object
+Common: Furniture=100, Household furnishings=160
+Rare: Seating=220, Chair=300, Soft furnishings=340, Cushion=390
+Extreme: Upholstered furniture=460, Lounge furniture=530
+Eagle: Floor seating=650, Frameless furniture=760
+
+Word: Ottoman
+Theme: Imported object
+Common: Furniture=100, Household furniture=160
+Rare: Seating furniture=220, Upholstered furniture=300, Stool=380, Living-room furniture=260
+Extreme: Footstool=540, Accent furniture=430, Occasional furniture=470, Upholstered seating=510
+
+Word: Nightstand
+Theme: Imported object
+Common: Furniture=100, Household item=120, Interior furnishing=180
+Rare: Table=300, Bedside table=330, Residential furniture=240
+Extreme: Bedroom furniture=430, Occasional table=560, Storage furniture=460
+Eagle: Case goods=620, Bedroom case goods=720
+
+Word: Dresser
+Theme: Imported object
+Common: Furniture=120, Household furnishings=180, Durable goods=150
+Rare: Storage furniture=300, Bedroom furniture=350, Residential furniture=260, Freestanding furniture=320
+Extreme: Case goods=520, Clothing storage furniture=570, Drawer units=450
+
+Word: Wardrobe
+Theme: Imported object
+Common: Furniture=100, Household goods=180, Movable property=150
+Rare: Consumer durables=250, Home furnishings=220
+Extreme: Storage furniture=540, Cabinets=580, Bedroom furniture=430
+Eagle: Clothing storage=650, Case goods=720
+
+Word: Coat Rack
+Theme: Imported object
+Common: Household item=110, Furniture=180, Furnishings=140
+Rare: Storage furniture=370, Racks=250, Home organization products=310, Non-upholstered furniture=290
+Extreme: Clothes organizers=560, Hall furniture=460, Occasional furniture=400
+
+Word: Shoe Rack
+Theme: Imported object
+Common: Furniture=150, Household goods=100, Home furnishings=180
+Rare: Durable goods=200, Rack=350, Storage equipment=300
+Extreme: Storage furniture=450, Shelving=400, Home organization products=550
+Eagle: Footwear storage=700
+
+Word: Hanger
+Theme: Imported object
+Common: household item=130
+Rare: storage equipment=280, suspension device=350, hardware=200
+Extreme: closet accessory=570, laundry accessory=510, garment-care equipment=460
+Eagle: garment support=690, clothing organizer=620, retail display accessory=740
+
+Word: Laundry Basket
+Theme: Imported object
+Common: Container=100, Domestic equipment=150
+Rare: Basket=200, Storage equipment=350, Housewares=250
+Extreme: Household organizer=500, Carrying equipment=450, Materials-handling equipment=550
+Eagle: Laundry accessory=650, Textile-care supplies=600
+
+Word: Clothes Iron
+Theme: Imported object
+Common: household appliance=180, durable good=120, electrical equipment=160
+Rare: small appliance=300, heating device=340
+Extreme: laundry equipment=420, pressing tool=570, handheld appliance=460
+Eagle: textile-finishing equipment=690, electrothermal appliance=630
+
+Word: Ironing Board
+Theme: Imported object
+Common: Household equipment=100, Furniture=180, Housewares=150
+Rare: Laundry equipment=350, Tables=260, Work surfaces=300
+Extreme: Garment-care equipment=460, Laundry accessories=520
+Eagle: Ironing equipment=720, Pressing aids=650
+
+Word: Vacuum Cleaner
+Theme: Imported object
+Common: Appliance=160, Machine=100, Durable good=140
+Rare: Cleaning equipment=320, Household equipment=200, Electrical equipment=240
+Extreme: Floor-care equipment=520, Electromechanical device=430
+Eagle: Dust-collection equipment=650, Suction device=710
+
+Word: Broom
+Theme: Imported object
+Common: Household item=100, Tool=140, Maintenance equipment=180
+Rare: Cleaning equipment=350, Hand tool=250, Brush=300, Household utensil=220
+Extreme: Floor-care equipment=550, Janitorial supply=480
+Eagle: Sweeping equipment=700
+
+Word: Dustpan
+Theme: Imported object
+Common: Hand tool=190, Household item=100, Container=130, Utensil=160
+Rare: Cleaning tool=280, Scoop=350, Waste-collection equipment=390, Material-handling equipment=240
+Extreme: Janitorial equipment=420, Floor-care equipment=460
+
+Word: Mop
+Theme: Imported object
+Common: household item=100, hardware=150
+Rare: cleaning tool=300, hand tool=240, cleaning supply=380, maintenance equipment=200
+Extreme: absorbent product=550, sanitation equipment=470
+Eagle: janitorial equipment=620, floor-care equipment=740
+
+Word: Bucket
+Theme: Imported object
+Common: Container=100, Durable good=180, Tangible personal property=140
+Rare: Household article=270, Utensil=230, Portable container=390, Storage container=350
+Extreme: Liquid container=510, Open-top container=470
+Eagle: Material-handling equipment=620
+
+Word: Trash Can
+Theme: Imported object
+Common: Container=120, Household object=170
+Rare: Bin=260, Housekeeping equipment=340, Storage equipment=230
+Extreme: Waste-management equipment=470, Sanitation equipment=420, Waste-storage equipment=560
+Eagle: Waste container=650, Solid-waste collection equipment=620
+
+Word: Recycling Bin
+Theme: Imported object
+Common: Container=120, Storage equipment=190
+Rare: Waste receptacle=210, Waste-management equipment=340, Sanitation equipment=310, Material-handling equipment=280
+Extreme: Recycling equipment=490, Solid-waste collection equipment=550, Environmental protection equipment=420
+Eagle: Source-separation equipment=670
+
+Word: Dishwasher
+Theme: Imported object
+Common: Appliance=150, Machine=100
+Rare: Electrical appliance=260, Cleaning equipment=380, Household appliance=300, Consumer durable=220, Labor-saving device=340
+Extreme: Kitchen appliance=440, Electromechanical device=560
+Eagle: White good=650
+
+Word: Microwave
+Theme: Imported object
+Common: Appliance=110, Household appliance=190, Electrical appliance=170, Consumer durable=130
+Rare: Kitchen appliance=260, Cooking appliance=320, Oven=360, Food-preparation equipment=240
+Eagle: Radio-frequency heating equipment=640, Dielectric heating equipment=750
+
+Word: Oven
+Theme: Imported object
+Common: Appliance=120, Heating device=180
+Rare: Kitchen appliance=260, Major appliance=330, Cooking appliance=390, Food preparation equipment=230, Household appliance=200
+Extreme: Baking equipment=470, Heating chamber=560
+Eagle: Thermal processing equipment=620
+
+Word: Stove
+Theme: Imported object
+Common: Appliance=120, Durable good=180
+Rare: Major appliance=360, Kitchen equipment=290, Heating device=310, Household appliance=240, Household furnishing=200
+Extreme: Cooking equipment=430, Energy converter=570, Domestic technology=460
+
+Word: Refrigerator
+Theme: Imported object
+Common: Household appliance=150, Electrical appliance=180, Consumer durable=120
+Rare: Food-storage equipment=280, White good=390, Kitchen appliance=230, Food-preservation equipment=330
+Extreme: Refrigeration equipment=470, Thermal machine=550
+Eagle: Heat pump=650
+
+Word: Freezer
+Theme: Imported object
+Common: Appliance=180, Machine=140
+Rare: Electrical equipment=220, Temperature-control equipment=380, Storage equipment=260
+Extreme: Food-storage equipment=460, Major appliance=520, Food-preservation equipment=560
+Eagle: Refrigeration equipment=650, Cold-storage equipment=620
+
+Word: Toaster Oven
+Theme: Imported object
+Common: household appliance=100, electrical appliance=150, food preparation equipment=180
+Rare: kitchen appliance=220, small appliance=310, cooking appliance=350
+Extreme: oven=430, countertop appliance=520
+Eagle: electric oven=650, electrothermal appliance=720
+
+Word: Air Fryer
+Theme: Imported object
+Common: Appliance=100, Household appliance=160, Electrical appliance=190
+Rare: Kitchen appliance=220, Small appliance=280, Cooking appliance=310, Countertop appliance=340
+Extreme: Fryer=450, Electrothermal appliance=520
+Eagle: Convection oven=650
+
+Word: Coffee Maker
+Theme: Imported object
+Common: appliance=100, machine=120
+Rare: kitchen appliance=280, small appliance=360, household appliance=200, kitchen equipment=240, electrical appliance=300
+Extreme: beverage preparation equipment=540, food preparation equipment=400
+Eagle: brewing equipment=650
+
+Word: Espresso Machine
+Theme: Imported object
+Common: Kitchen appliance=140, Mechanical device=100, Food-preparation equipment=180, Small appliance=160
+Rare: Coffee maker=320, Beverage preparation appliance=240, Beverage dispenser=280
+Extreme: Barista equipment=570, Extraction equipment=460
+Eagle: Pressure brewer=650
+
+Word: Rice Cooker
+Theme: Imported object
+Common: Household appliance=120, Food preparation equipment=180, Electrical appliance=150
+Rare: Kitchen appliance=210, Cooking appliance=330, Small appliance=300, Countertop appliance=390, Cookware=240
+Eagle: Electrothermal appliance=620, Automatic cooker=690
+
+Word: Slow Cooker
+Theme: Imported object
+Common: Appliance=100, Household appliance=180
+Rare: Kitchen appliance=300, Cookware=240, Food-preparation equipment=350, Electrical appliance=220
+Extreme: Small appliance=420, Countertop appliance=520, Cooking appliance=460
+Eagle: Electric cooker=700
+
+Word: Food Processor
+Theme: Imported object
+Common: Appliance=100, Kitchen equipment=180, Electromechanical device=140
+Rare: Kitchen appliance=350, Household appliance=220, Electrical appliance=260
+Extreme: Small appliance=460, Countertop appliance=540, Multi-function appliance=500
+Eagle: Food-preparation equipment=620
+
+Word: Hand Mixer
+Theme: Imported object
+Common: mixer=150, household equipment=100
+Rare: kitchen appliance=230, food-preparation equipment=350, electrical appliance=200, kitchen utensil=280
+Extreme: handheld appliance=570, small appliance=420, baking equipment=480
+Eagle: electromechanical appliance=650
+
+Word: Juicer
+Theme: Imported object
+Common: Tool=100, Durable goods=180
+Rare: Mechanical device=220, Kitchenware=280, Kitchen utensil=350, Juicing appliance=320, Juice extractor=340
+Extreme: Food preparation equipment=420, Beverage preparation equipment=580, Extraction equipment=540, Food-contact equipment=480
+Eagle: Separation equipment=650
+
+Word: Waffle Maker
+Theme: Imported object
+Common: Kitchen appliance=100, Household appliance=120, Small appliance=180, Food-preparation equipment=160, Electric appliance=140
+Rare: Cooking appliance=230, Countertop appliance=280, Baking equipment=360
+Extreme: Foodservice equipment=420
+Eagle: Electrothermal appliance=620
+
+Word: Panini Press
+Theme: Imported object
+Common: Appliance=100, Food-preparation equipment=170, Household appliance=140
+Rare: Kitchen appliance=200, Cooking appliance=280, Small appliance=320, Countertop appliance=380
+Extreme: Grill=460
+Eagle: Contact grill=720, Sandwich maker=640
+
+Word: Can Opener
+Theme: Imported object
+Common: Tool=100, Household item=140
+Rare: Kitchen utensil=340, Mechanical device=260, Food-preparation equipment=390, Opener=200, Machine=230
+Extreme: Cutting tool=480, Compound machine=570
+Eagle: Metal-cutting tool=650
+
+Word: Corkscrew
+Theme: Imported object
+Common: tool=120
+Rare: hand tool=350, household implement=260, mechanical device=300
+Extreme: bottle opener=520, extraction tool=570, kitchen utensil=410, beverage equipment=450
+Eagle: barware=610, wine accessory=680
+
+Word: Peeler
+Theme: Imported object
+Common: Utensil=120, Kitchenware=180, Household implement=150
+Rare: Hand tool=280, Food preparation equipment=360, Cutlery=330
+Extreme: Cutting tool=440, Kitchen gadget=490, Smallwares=550
+Eagle: Food-contact article=620
+
+Word: Grater
+Theme: Imported object
+Common: household item=150
+Rare: kitchen utensil=300, hand tool=250, kitchenware=210, cutting tool=390, food-preparation equipment=340
+Extreme: food-contact article=550, shredding tool=580
+Eagle: food-service smallware=620, size-reduction equipment=660
+
+Word: Colander
+Theme: Imported object
+Common: Kitchen utensil=150, Container=100, Kitchenware=180, Household equipment=120
+Rare: Food-preparation equipment=280, Hand tool=240
+Extreme: Food-contact article=570, Separation equipment=440, Filtration equipment=520
+Eagle: Strainer=680
+
+Word: Whisk
+Theme: Imported object
+Common: Kitchen utensil=180, Hand tool=140, Housewares=100, Kitchenware=150
+Rare: Mixer=350, Food-preparation equipment=240, Stirring utensil=310
+Extreme: Baking equipment=430, Agitator=540
+Eagle: Foodservice smallware=610
+
+Word: Spatula
+Theme: Imported object
+Common: Tool=100, Hand tool=190, Utensil=150, Household equipment=120
+Rare: Kitchenware=270, Food-preparation equipment=380, Kitchen equipment=300
+Extreme: Kitchen utensil=440, Smallware=560
+Eagle: Food-contact article=610
+
+Word: Ladle
+Theme: Imported object
+Common: utensil=100, kitchenware=150
+Rare: hand tool=210, spoon=380, tableware=230, foodservice equipment=290
+Extreme: serving utensil=520, cooking utensil=460, scoop=410
+Eagle: flatware=650
+
+Word: Tongs
+Theme: Imported object
+Common: Hand tool=140, Household implement=110, Mechanical device=170
+Rare: Kitchen utensil=210, Serving utensil=360, Cooking utensil=330
+Extreme: Gripping tool=430, Food-service equipment=540, Food-preparation equipment=470
+Eagle: Lever mechanism=620
+
+Word: Rolling Pin
+Theme: Imported object
+Common: Utensil=100, Kitchenware=180, Household equipment=140
+Rare: Hand tool=240, Food preparation equipment=360
+Extreme: Baking equipment=540, Roller=420, Forming tool=470
+Eagle: Food-contact article=620, Dough preparation tool=720
+
+Word: Cutting Board
+Theme: Imported object
+Common: Household item=120, Board=150
+Rare: Kitchenware=220, Kitchen utensil=330, Manual tool=270, Work surface=380
+Extreme: Food preparation equipment=420, Knife accessory=560, Food handling equipment=470
+Eagle: Food-contact surface=650
+
+Word: Mixing Bowl
+Theme: Imported object
+Common: Bowl=140, Household item=100, Container=160
+Rare: Kitchenware=220, Kitchen utensil=320, Dish=200, Open-top container=390
+Extreme: Food preparation equipment=480
+Eagle: Food-contact article=680, Mixing vessel=740
+
+Word: Measuring Cup
+Theme: Imported object
+Common: container=140, household good=100, hand tool=180
+Rare: kitchenware=220, measuring instrument=360, kitchen utensil=280, food-preparation equipment=310
+Extreme: baking utensil=410, measuring vessel=530
+Eagle: volume measure=650
+
+Word: Measuring Spoon
+Theme: Imported object
+Common: Utensil=120, Kitchenware=180, Household item=100
+Rare: Spoon=200, Measuring instrument=330, Cooking utensil=290, Food-preparation equipment=250
+Extreme: Volume-measuring device=570, Measuring vessel=490, Foodservice smallware=440
+
+Word: Saucepan
+Theme: Imported object
+Common: Household item=100, Container=140
+Rare: Cookware=340, Kitchenware=230, Food preparation equipment=280, Kitchen utensil=250
+Extreme: Cooking vessel=420, Pan=480, Stovetop cookware=570, Cooking pot=460
+
+Word: Frying Pan
+Theme: Imported object
+Common: Kitchenware=150, Food preparation equipment=180, Household goods=110, Durable goods=130
+Rare: Cookware=230, Cooking utensils=210, Cooking vessels=320, Stovetop cookware=380
+Extreme: Pans=420, Food-contact articles=510
+
+Word: Stockpot
+Theme: Imported object
+Common: Kitchenware=180, Household goods=100, Container=140
+Rare: Cookware=300, Kitchen utensil=240, Food preparation equipment=360
+Extreme: Cooking vessel=420, Pot=500, Hollowware=580
+Eagle: Food-contact article=680
+
+Word: Casserole Dish
+Theme: Imported object
+Common: Kitchenware=150, Household item=100
+Rare: Food container=300, Tableware=250, Kitchen utensil=200
+Extreme: Dish=400, Cookware=550, Serveware=450
+Eagle: Bakeware=700, Cooking vessel=600
+
+Word: Baking Sheet
+Theme: Imported object
+Common: Kitchenware=140, Household equipment=100
+Rare: Food preparation equipment=260, Cookware=350, Food-contact article=310, Cooking utensil=220
+Extreme: Pan=430, Ovenware=590, Tray=460
+Eagle: Bakeware=700
+
+Word: Loaf Pan
+Theme: Imported object
+Common: Kitchenware=180, Containers=100, Household goods=140
+Rare: Cookware=340, Food-preparation equipment=380
+Extreme: Bakeware=560, Food-contact articles=470
+Eagle: Baking pans=700, Baking molds=650, Bakery equipment=600
+
+Word: Muffin Tin
+Theme: Imported object
+Common: Kitchenware=120, Container=100, Cooking utensil=190
+Rare: Food-contact article=230, Cookware=280, Food-preparation equipment=250
+Extreme: Baking pan=540, Bakeware=430, Baking mold=580
+Eagle: Multi-cavity mold=700
+
+Word: Pie Dish
+Theme: Imported object
+Common: Household item=140, Container=100, Dish=190
+Rare: Kitchenware=220, Food preparation equipment=280, Cookware=350
+Extreme: Bakeware=560, Ovenware=490, Cooking vessel=410
+Eagle: Baking dish=720
+
+Word: Dinner Knife
+Theme: Imported object
+Common: Household item=100, Utensil=150, Hand tool=180
+Rare: Kitchenware=230, Knife=390, Cutting tool=290
+Extreme: Tableware=430, Eating utensil=520, Cutlery=580
+Eagle: Table knife=740
+
+Word: Soup Spoon
+Theme: Imported object
+Common: Spoon=150, Household equipment=125
+Rare: Tableware=250, Eating utensil=375, Kitchenware=225, Hand tool=200
+Extreme: Flatware=450, Food-service equipment=525, Movable property=575
+Eagle: Food-contact article=650
+
+Word: Teaspoon
+Theme: Imported object
+Common: utensil=140, household item=100, spoon=180
+Rare: tableware=280, kitchenware=240, eating utensil=360
+Extreme: flatware=440, smallware=560, stirring utensil=400
+Eagle: food-contact article=620
+
+Word: Serving Spoon
+Theme: Imported object
+Common: utensil=100, kitchenware=160, hand tool=180, spoon=140
+Rare: tableware=220, cutlery=260, food-service equipment=320
+Extreme: serving utensil=480, portioning utensil=520
+Eagle: food-contact article=640
+
+Word: Gravy Ladle
+Theme: Imported object
+Common: Household object=100, Utensil=180, Hand tool=160
+Rare: Kitchenware=240, Tableware=280, Foodservice equipment=260
+Extreme: Servingware=400, Serving utensil=480, Spoon=540
+Eagle: Ladle=680
+
+Word: Butter Knife
+Theme: Imported object
+Common: Household item=100, Hand tool=160
+Rare: Kitchenware=220, Tableware=340, Utensil=250, Food-contact article=300
+Extreme: Cutlery=430, Knife=500
+Eagle: Spreader=730, Table knife=620
+
+Word: Wine Glass
+Theme: Imported object
+Common: Household goods=130, Containers=110
+Rare: Kitchenware=240, Hospitality supplies=290, Foodservice smallwares=370
+Extreme: Tableware=420, Barware=560, Glassware=490
+Eagle: Drinkware=610, Stemware=760
+
+Word: Beer Mug
+Theme: Imported object
+Common: Household item=100, Container=140, Mug=180
+Rare: Tableware=300, Kitchenware=220, Utensil=260
+Extreme: Drinking vessel=420, Barware=540
+Eagle: Food-contact article=680, Hollowware=740
+
+Word: Whiskey Tumbler
+Theme: Imported object
+Common: Container=100, Tableware=180, Kitchenware=160, Household utensils=130
+Rare: Drinkware=240, Glassware=280, Foodservice equipment=350
+Extreme: Barware=440, Drinking glass=520
+Eagle: Tumbler=700
+
+Word: Shot Glass
+Theme: Imported object
+Common: tableware=180, kitchenware=140, container=100
+Rare: drinkware=220, glassware=260, cup=380
+Extreme: barware=510, drinking glass=440, food-contact article=580
+Eagle: tumbler=690
+
+Word: Highball Glass
+Theme: Imported object
+Common: Glassware=180, Drinkware=160, Tableware=100, Beverage container=120, Kitchenware=110
+Rare: Barware=380, Foodservice ware=240
+Extreme: Tumbler=560, Hollow glassware=450
+Eagle: Cocktail glass=620
+
+Word: Champagne Flute
+Theme: Imported object
+Common: Vessel=100, Tableware=180, Kitchenware=160
+Rare: Drinkware=220, Glassware=280, Barware=330, Hospitality supplies=250
+Extreme: Stemware=460, Wine glass=540
+Eagle: Sparkling-wine glass=720
+
+Word: Cocktail Shaker
+Theme: Imported object
+Common: hospitality supplies=180
+Rare: kitchenware=220, hand tools=300, liquid containers=260
+Extreme: mixing vessels=580, food-service equipment=400, smallwares=520, mixing equipment=470
+Eagle: barware=730, beverage preparation equipment=650
+
+Word: Ice Cube Tray
+Theme: Imported object
+Common: Household item=120, Container=160
+Rare: Kitchenware=200, Kitchen utensil=280, Food preparation equipment=350
+Extreme: Freezer accessory=580, Mold=470, Food-contact article=430
+Eagle: Ice-making equipment=650
+
+Word: Pitcher
+Theme: Imported object
+Common: Container=100, Household item=130, Utensil=170
+Rare: Kitchenware=240, Tableware=280, Food-service equipment=350
+Extreme: Serveware=430, Beverageware=480, Pouring vessel=540
+Eagle: Food-contact article=610
+
+Word: Teapot
+Theme: Imported object
+Common: household item=100, container=120
+Rare: kitchenware=200, tableware=240, serving vessel=380, food-contact article=340
+Extreme: beverage preparation equipment=420, infusion vessel=560
+Eagle: tea service ware=620, hollowware=700
+
+Word: Sugar Bowl
+Theme: Imported object
+Common: tableware=180, container=100, bowl=140, kitchenware=160
+Rare: dishware=230, serveware=350, food container=280
+Extreme: condiment container=480, food-contact article=570, hollowware=430
+
+Word: Creamer Pitcher
+Theme: Imported object
+Common: Tableware=180, Kitchenware=150, Container=100, Household utensil=160
+Rare: Pitcher=280, Pouring vessel=320, Serving vessel=300, Food service equipment=240
+Extreme: Beverage serviceware=440, Hollowware=520
+
+Word: Salt Shaker
+Theme: Imported object
+Common: Household item=100, Kitchenware=180, Container=140
+Rare: Tableware=280, Dining accessory=380, Food service equipment=320, Kitchen utensil=240, Storage container=350
+Extreme: Dispenser=450
+Eagle: Condiment dispenser=700
+
+Word: Pepper Grinder
+Theme: Imported object
+Common: Kitchen utensil=160, Kitchenware=120, Mechanical device=140
+Rare: Food preparation equipment=200, Grinding device=280, Condiment dispenser=390, Tableware=230, Mill=310
+Extreme: Size reduction equipment=450
+Eagle: Spice mill=620
+
+Word: Napkin Holder
+Theme: Imported object
+Common: Household item=120, Home furnishing=180
+Rare: Tableware=350, Kitchenware=240, Storage organizer=390, Container=210
+Extreme: Holder=450, Table accessory=560
+Eagle: Restaurant supply=630, Food-service equipment=690
+
+Word: Place Mat
+Theme: Imported object
+Common: Household good=120
+Rare: Home furnishing=220, Tableware=340, Kitchenware=260, Home décor item=300
+Extreme: Dining accessory=430, Surface protector=480, Table covering=590
+Eagle: Table linen=650, Food-service supply=710
+
+Word: Tablecloth
+Theme: Imported object
+Common: Textile product=150, Household good=110
+Rare: Surface covering=380, Household textile=320, Home furnishing=240
+Extreme: Soft furnishing=470, Dining accessory=540, Protective covering=430
+Eagle: Table linen=720, Table covering=620
+
+Word: Apron
+Theme: Imported object
+Common: Clothing=150, Household items=180
+Rare: Workwear=350, Textile products=230, Clothing accessories=300, Kitchenware=390
+Extreme: Protective clothing=420, Cooking accessories=480, Personal protective equipment=560
+Eagle: Kitchen linen=620
+
+Word: Oven Mitt
+Theme: Imported object
+Common: Household item=120
+Rare: Kitchenware=200, Personal protective equipment=390, Mittens=300, Kitchen utensil=240
+Extreme: Protective clothing=440, Thermal insulation product=560, Hand-protection equipment=520
+Eagle: Heat-resistant gloves=650, Heat-protection equipment=610
+
+Word: Dish Towel
+Theme: Imported object
+Common: Household item=100, Textile product=160
+Rare: Towel=240, Kitchen accessory=320, Absorbent cloth=380, Cleaning supplies=280
+Extreme: Household linen=430, Cleaning cloth=520
+Eagle: Kitchen textile=720, Drying cloth=650
+
+Word: Potholder
+Theme: Imported object
+Common: Household item=100, Kitchenware=180, Textile article=160
+Rare: Protective equipment=340, Kitchen accessory=260, Household textile=300
+Extreme: Thermal insulator=530, Kitchen linen=460
+Eagle: Hand protection=650, Kitchen safety equipment=720
+
+Word: Sponge
+Theme: Imported object
+Common: Household article=150
+Rare: Cleaning implement=230, Porous material=360, Absorbent material=320, Hand tool=260, Cleaning supply=280
+Extreme: Cellular solid=540, Soft matter=470, Capillary medium=580
+Eagle: Open-cell foam=610
+
+Word: Dish Soap
+Theme: Imported object
+Common: Cleaning agent=150, Household product=100, Cleaning supply=180
+Rare: Detergent=320, Chemical mixture=230, Household chemical=280
+Extreme: Dishwashing product=560, Degreaser=470, Kitchen cleaning product=420
+Eagle: Surfactant formulation=650
+
+Word: Scouring Pad
+Theme: Imported object
+Common: Cleaning tool=160, Hand tool=180, Homeware=120
+Rare: Household cleaning supply=220, Kitchenware=260, Janitorial supply=380, Surface-care product=340
+Extreme: Abrasive=420, Dishwashing aid=540, Cleaning consumable=460
+
+Word: Trash Bag
+Theme: Imported object
+Common: Bag=110, Container=150
+Rare: Household supply=230, Disposable product=320, Cleaning supply=350
+Extreme: Janitorial supply=430, Liner=510, Sanitation product=460, Waste-management product=570
+Eagle: Waste receptacle=620
+
+Word: Aluminum Foil
+Theme: Imported object
+Common: metal=100, household item=180
+Rare: kitchen supply=260, packaging material=320, recyclable material=230
+Extreme: food-contact material=480, nonferrous metal=410, food packaging material=530
+Eagle: metal foil=700, rolled metal product=620
+
+Word: Plastic Wrap
+Theme: Imported object
+Common: Household product=120
+Rare: Packaging material=200, Kitchen supply=240, Food storage product=380, Polymeric material=300
+Extreme: Food packaging=420, Flexible packaging=540, Food-contact material=580, Disposable packaging=460
+Eagle: Plastic film=650
+
+Word: Parchment Paper
+Theme: Imported object
+Common: Paper product=100, Household consumable=180
+Rare: Kitchen supply=250, Food-contact material=350
+Extreme: Specialty paper=440, Baking accessory=480, Food wrapping material=420
+Eagle: Grease-resistant paper=650, Release paper=720, Heat-resistant paper=610
+
+Word: Ziploc Bag
+Theme: Imported object
+Common: Bag=100, Container=120, Kitchen supply=180, Packaging=160
+Rare: Plastic bag=250, Storage bag=320, Food storage container=380
+Extreme: Flexible packaging=480, Resealable packaging=440, Food-contact article=580
+
+Word: Food Storage Container
+Theme: Imported object
+Common: Personal property=140
+Rare: Container=260, Housewares=320, Storage equipment=390
+Extreme: Kitchenware=470, Food packaging=580, Food handling equipment=520
+Eagle: Food-contact article=710, Food storage product=740, Food preservation equipment=630
+
+Word: Paper Towel
+Theme: Imported object
+Common: Paper product=140, Household supplies=100
+Rare: Disposable product=220, Absorbent product=380, Cleaning supplies=300, Kitchen supplies=260
+Extreme: Janitorial supplies=420, Wiping material=560
+Eagle: Tissue paper=620, Sanitary paper=700
+
+Word: Toilet Paper
+Theme: Imported object
+Common: Paper product=100, Household consumable=180, Disposable product=160
+Rare: Personal hygiene product=350, Bathroom supply=300, Consumer packaged good=220, Janitorial supply=390
+Extreme: Cellulose product=460
+Eagle: Sanitary paper product=680, Tissue paper product=600
+
+Word: Bath Towel
+Theme: Imported object
+Common: Textile product=120, Household goods=100, Home furnishing=170
+Rare: Household linen=330, Bathroom accessory=250, Personal care item=230, Hygiene supplies=290
+Extreme: Towel=420, Made-up textile article=560
+Eagle: Bath linen=650
+
+Word: Hand Towel
+Theme: Imported object
+Common: Textile=140, Household item=100
+Rare: Towel=300, Personal hygiene supplies=390, Home furnishings=220, Dry goods=270
+Extreme: Household linen=420, Absorbent textile=560, Bathroom accessory=480
+Eagle: Bath linen=650
+
+Word: Washcloth
+Theme: Imported object
+Common: Household good=120, Textile product=180
+Rare: Bathroom accessory=310, Cleaning implement=280, Household linen=390, Cloth=210
+Extreme: Towel=430, Personal hygiene accessory=480, Cleaning cloth=540
+Eagle: Bath linen=650
+
+Word: Shower Curtain
+Theme: Imported object
+Common: household item=120
+Rare: curtain=230, furnishing=200, soft furnishing=360, partition=310, home decor item=270
+Extreme: bathroom accessory=570, privacy screen=490, water barrier=420
+Eagle: splash guard=650
+
+Word: Bath Mat
+Theme: Imported object
+Common: Household item=100
+Rare: Floor covering=310, Home textile=360, Home furnishing=220, Soft furnishing=290
+Extreme: Bathroom accessory=570, Floor mat=430, Household linen=400, Rug=450
+Eagle: Bath linen=650
+
+Word: Soap Dispenser
+Theme: Imported object
+Common: Dispensing device=180, Container=120
+Rare: Bathroom accessory=390, Fluid-handling device=310, Household equipment=200, Cleaning accessory=350
+Extreme: Hygiene equipment=460, Personal care accessory=420, Handwashing equipment=580
+Eagle: Liquid dispenser=650
+
+Word: Toothbrush Holder
+Theme: Imported object
+Common: Household item=100, Container=180, Holder=140
+Rare: Home accessory=260, Storage accessory=350
+Extreme: Bathroom accessory=580, Organizer=420, Personal care accessory=480
+Eagle: Oral hygiene accessory=720, Bathroom storage product=650
+
+Word: Hairbrush
+Theme: Imported object
+Common: Brush=120, Hand tool=180, Household item=100
+Rare: Personal care item=240, Toiletry=350, Hygiene product=300
+Extreme: Grooming tool=420, Beauty tool=480
+Eagle: Hair-care tool=700, Hairdressing equipment=640
+
+Word: Comb
+Theme: Imported object
+Common: Tool=110, Household item=150, Personal effects=180
+Rare: Personal care product=260, Grooming implement=390, Toiletry=310
+Extreme: Hair accessory=480, Styling tool=540
+Eagle: Hairdressing equipment=670, Hair-care tool=600
+
+Word: Hair Dryer
+Theme: Imported object
+Common: Household appliance=150, Electrical appliance=180
+Rare: Small appliance=290, Grooming tool=360, Electromechanical device=240, Beauty equipment=390
+Extreme: Personal care appliance=420, Blower=530, Heating appliance=470
+Eagle: Hair styling tool=610
+
+Word: Straightening Iron
+Theme: Imported object
+Common: Electrical equipment=140
+Rare: Small appliance=280, Handheld tool=220, Beauty equipment=380, Household appliance=200
+Extreme: Personal care appliance=440, Electrothermal appliance=580, Salon equipment=480
+Eagle: Hair styling tool=680, Resistance heating device=620
+
+Word: Curling Iron
+Theme: Imported object
+Common: Electrical appliance=140, Consumer durable=110
+Rare: Personal grooming implement=230, Beauty appliance=350, Small appliance=200, Handheld appliance=280, Heating appliance=310, Salon equipment=380
+Extreme: Hair styling tool=420, Electrothermal device=520
+
+Word: Razor
+Theme: Imported object
+Common: Household article=150, Tool=110
+Rare: Personal care item=260, Toiletry=390, Hygiene product=310
+Extreme: Cutting instrument=470, Grooming tool=580, Edged tool=510
+Eagle: Shaving implement=760, Barbering tool=650
+
+Word: Shaving Cream
+Theme: Imported object
+Common: Personal care product=180
+Rare: Cosmetic=310, Toiletry=250, Hygiene product=280
+Extreme: Grooming product=450, Topical preparation=560, Skin-care product=410, Lubricant=520
+Eagle: Shaving aid=730, Emulsion=650
+
+Word: Nail Clippers
+Theme: Imported object
+Common: hand tool=160, household implement=190, mechanical device=110
+Rare: cutting tool=250, personal grooming tool=360, personal hygiene implement=330
+Extreme: manicure instrument=570, toiletry=410, pedicure instrument=550
+Eagle: compound-lever tool=700
+
+Word: Tweezers
+Theme: Imported object
+Common: Tool=100
+Rare: Household item=220, Hand tool=280, Non-powered tool=320
+Extreme: Personal care implement=410, Precision instrument=540, Gripping tool=590, Simple machine=460
+Eagle: Forceps=650, Third-class lever=760
+
+Word: Eyelash Curler
+Theme: Imported object
+Common: Personal care product=160, Mechanical device=120
+Rare: Makeup tool=360, Hand tool=230, Beauty accessory=250, Grooming tool=290, Salon equipment=320
+Extreme: Clamping tool=510, Eye makeup tool=560
+Eagle: Eyelash tool=650
+
+Word: Cotton Swab
+Theme: Imported object
+Common: swab=120, household supply=160
+Rare: personal hygiene article=310, Personal care product=330, applicator=350, medical supply=280, disposable product=200, cotton product=390, cleaning implement=260
+Extreme: cosmetic tool=430, first-aid supply=470
+
+Word: Cotton Ball
+Theme: Imported object
+Common: Household supply=180
+Rare: Personal care item=260, Absorbent material=380, Disposable product=300, Textile material=210
+Extreme: Medical supply=460, Cosmetic applicator=570, Hygiene product=420
+Eagle: Cotton wool=730, Cotton fiber product=650
+
+Word: Makeup Brush
+Theme: Imported object
+Common: Household goods=130
+Rare: Brush=280, Personal care item=390, Hand tool=220, Applicator=340
+Extreme: Toiletry=450, Cosmetics accessory=580, Beauty supply=490
+Eagle: Cosmetic applicator=730, Beauty tool=620
+
+Word: Lipstick
+Theme: Imported object
+Common: consumer packaged good=180, non-durable good=160
+Rare: personal care product=300, chemical mixture=240, toiletry=350, chemical product=200
+Extreme: cosmetic=480, topical preparation=400
+Eagle: lip makeup=750, color cosmetic=650
+
+Word: Mascara
+Theme: Imported object
+Common: Cosmetic=140, Personal care product=180, Beauty product=120
+Rare: Toiletry=230, Consumer packaged good=280, Fast-moving consumer good=360, Non-durable consumer good=210
+Extreme: Chemical mixture=420
+Eagle: Eye makeup=650, Eyelash product=710
+
+Word: Foundation Bottle
+Theme: Imported object
+Common: Container=100, Packaging=150
+Rare: Bottle=220, Liquid container=290, Consumer packaging=340, Retail packaging=380
+Extreme: Primary packaging=520, Rigid packaging=430
+Eagle: Personal-care packaging=620, Cosmetics packaging=740
+
+Word: Eyeliner Pencil
+Theme: Imported object
+Common: Personal care product=160, Toiletry=180
+Rare: Cosmetic=290, Beauty product=220
+Extreme: Color cosmetic=420, Eye makeup=560, Leave-on cosmetic=470, Makeup applicator=510
+Eagle: Cosmetic pencil=650, Eyeliner=720
+
+Word: Perfume Bottle
+Theme: Imported object
+Common: container=100, bottle=170
+Rare: packaging=210, liquid container=260, storage container=290, retail packaging=350
+Extreme: primary packaging=430, cosmetic packaging=520, rigid packaging=400
+Eagle: fragrance packaging=610
+
+Word: Deodorant Stick
+Theme: Imported object
+Common: Personal care product=140, Toiletry=180, Chemical mixture=110
+Rare: Deodorant=300, Cosmetic product=210, Hygiene product=240, Topical preparation=390
+Extreme: Underarm care product=510
+Eagle: Leave-on cosmetic=620, Cosmetic stick=700
+
+Word: Body Wash Bottle
+Theme: Imported object
+Common: Bottle=180, Container=100, Packaging=140
+Rare: Consumer packaging=320, Storage container=250, Non-food packaging=390
+Extreme: Toiletry container=580, Liquid-product packaging=470, Dispensing package=540
+Eagle: Primary packaging=680
+
+Word: Shampoo Bottle
+Theme: Imported object
+Common: Container=100, Bottle=160, Packaging=130, Household item=120
+Rare: Liquid container=220, Dispensing container=280, Non-food packaging=250, Retail packaging=310
+Extreme: Personal care packaging=480, Primary packaging=420
+
+Word: Conditioner Bottle
+Theme: Imported object
+Common: Container=100, Bottle=180, Packaging=130
+Rare: Liquid container=260, Rigid packaging=330, Dispensing container=300
+Extreme: Primary packaging=410, Retail packaging=450, Personal care packaging=580
+Eagle: Hair-care packaging=720
+
+Word: Sunscreen Tube
+Theme: Imported object
+Common: Sunscreen=180
+Rare: Personal care product=240, Skincare product=360, Toiletry=280, Packaged good=200
+Extreme: Topical preparation=510, Dermatological preparation=560
+Eagle: Sun-care product=650, Skin protectant=620, Tube package=730
+
+Word: Lotion Bottle
+Theme: Imported object
+Common: Container=100, Bottle=180, Packaging=130
+Rare: Liquid container=250, Toiletry container=390, Non-food packaging=310, Retail packaging=350
+Extreme: Primary packaging=480, Reclosable packaging=540
+Eagle: Cosmetic packaging=620
+
+Word: First Aid Bandage
+Theme: Imported object
+Common: bandage=130, healthcare product=160
+Rare: medical supply=220, medical device=350, medical consumable=390, hygiene product=260
+Extreme: wound-care product=530, first aid supply=440, wound dressing=590
+Eagle: medical textile=650
+
+Word: Gauze Roll
+Theme: Imported object
+Common: Medical supply=130, Woven fabric=180
+Rare: Bandage=350, First-aid supply=250, Gauze=210, Medical device=320, Medical consumable=280
+Extreme: Medical textile=490, Wound dressing=430
+Eagle: Surgical dressing=610
+
+Word: Medical Tape
+Theme: Imported object
+Common: Adhesive tape=140, Medical supply=180
+Rare: Medical device=220, Healthcare consumable=300, First-aid supply=340
+Extreme: Wound-care supply=420, Bandaging material=460, Medical adhesive=540
+Eagle: Pressure-sensitive adhesive product=600, Dressing fixation material=680
+
+Word: Antiseptic Wipe
+Theme: Imported object
+Common: Wipe=180, Medical supply=140
+Rare: First-aid supply=370, Hygiene product=200, Medical consumable=310
+Extreme: Wound-care product=460, Skin cleanser=410, Infection-control product=530
+Eagle: Antiseptic=750, Biocide=640
+
+Word: Tweezers Medical
+Theme: Imported object
+Common: Tweezers=110, Simple machine=150
+Rare: Hand tool=200, Medical device=320, Precision tool=350, Lever=250
+Extreme: Medical instrument=480, Forceps=580, Grasping tool=400
+Eagle: Surgical instrument=620
+
+Word: Hot Water Bottle
+Theme: Imported object
+Common: Household item=120, Container=180
+Rare: Heating device=390, Bottle=240, Personal care product=310
+Extreme: Comfort aid=450, Heat reservoir=560, Bedding accessory=420
+Eagle: Thermotherapy device=700, Pain-relief aid=620
+
+Word: Heating Pad
+Theme: Imported object
+Common: Household item=180
+Rare: Personal care product=280, Heating equipment=390, Health and wellness product=320, Heat source=220, Personal comfort product=260
+Extreme: Pain management aid=570, Therapeutic device=490
+Eagle: Thermotherapy device=740, Physical therapy equipment=630
+
+Word: Ice Pack
+Theme: Imported object
+Common: Cooling equipment=160, Household supply=120
+Rare: First-aid supply=300, Medical device=350, Coolant=240
+Extreme: Cold compress=460, Physical therapy equipment=520, Heat sink=590, Refrigeration accessory=410
+Eagle: Thermal energy storage device=680
+
+Word: Blood Pressure Monitor
+Theme: Imported object
+Common: Medical device=100, Measuring instrument=150
+Rare: Diagnostic equipment=300, Monitoring device=200
+Extreme: Pressure measuring instrument=550, Patient monitoring equipment=450, Physiological measurement instrument=500
+Eagle: Vital signs monitor=650, Noninvasive monitoring equipment=600, Cardiovascular monitoring equipment=700
+
+Word: Pulse Oximeter
+Theme: Imported object
+Common: Medical device=120, Electronic measuring instrument=190
+Rare: Oximeter=310, Diagnostic instrument=260, Optical instrument=230, Medical electrical equipment=380
+Extreme: Patient monitor=450, Physiological measurement instrument=540, Noninvasive monitoring device=590
+Eagle: Photometric instrument=650
+
+Word: Syringe
+Theme: Imported object
+Common: Medical device=120, Laboratory equipment=180
+Rare: Liquid-handling equipment=240, Injection device=370, Manual pump=320, Aspiration device=390
+Extreme: Volumetric measuring instrument=430, Positive-displacement pump=560
+Eagle: Piston pump=690, Reciprocating pump=610
+
+Word: Medicine Dropper
+Theme: Imported object
+Common: Dropper=120, Hand tool=180
+Rare: Medical device=310, Healthcare supply=250, Liquid dispenser=380, Applicator=330
+Extreme: Pipette=450, Dosing device=590, Liquid-handling equipment=510
+Eagle: Medication delivery device=680
+
+Word: Pill Organizer
+Theme: Imported object
+Common: Container=120
+Rare: Consumer healthcare product=260, Healthcare accessory=350, Medical supply=310, Household organization product=230
+Extreme: Compartmentalized container=480, Daily living aid=560, Assistive device=440
+Eagle: Medication storage device=740, Medication management aid=700
+
+Word: Cane
+Theme: Imported object
+Common: Assistive device=180, Stick=120, Handheld implement=150
+Rare: Mobility aid=300, Medical equipment=240, Balance aid=370, Daily living aid=330
+Extreme: Rehabilitation equipment=460, Orthopedic aid=540
+Eagle: Durable medical equipment=610
+
+Word: Crutches
+Theme: Imported object
+Common: Assistive technology=140, Medical device=180
+Rare: Mobility aid=240, Rehabilitation equipment=350
+Extreme: Orthopedic equipment=430, Durable medical equipment=570, Non-invasive medical device=490, Non-powered medical device=530, Reusable medical device=460
+Eagle: Walking aid=650
+
+Word: Walker
+Theme: Imported object
+Common: Assistive device=150, Medical device=190
+Rare: Mobility aid=270, Rehabilitation equipment=360, Home medical equipment=390, Patient care equipment=230, Support frame=310
+Extreme: Orthopedic equipment=450, Non-invasive medical device=520
+Eagle: Durable medical equipment=610
+
+Word: Wheelchair
+Theme: Imported object
+Common: Chair=100, Vehicle=140
+Rare: Mobility aid=230, Medical device=350, Assistive technology=290
+Extreme: Patient transport equipment=510, Wheeled mobility device=580, Accessibility equipment=410, Rehabilitation equipment=470
+Eagle: Durable medical equipment=650
+
+Word: Hearing Aid
+Theme: Imported object
+Common: Electronic device=140
+Rare: Assistive technology=340, Medical device=250, Wearable technology=300, Audio equipment=200
+Extreme: Audio amplifier=470, Electroacoustic device=590, Prosthetic device=530, Rehabilitation equipment=410
+Eagle: Audiological equipment=680
+
+Word: Reading Glasses Case
+Theme: Imported object
+Common: Container=100, Personal effects=160, Case=120
+Rare: Eyeglass case=300, Storage product=360, Personal accessory=240
+Extreme: Protective case=480, Optical goods=580, Carrying case=440
+Eagle: Eyewear accessory=700
+
+Word: Contact Lens Case
+Theme: Imported object
+Common: Container=100, Case=150, Storage accessory=180
+Rare: Personal care product=220, Medical supplies=380, Toiletry=260, Hygiene accessory=320
+Extreme: Vision-care product=470
+Eagle: Contact lens accessory=740, Medical device accessory=650
+
+Word: Walking Stick
+Theme: Imported object
+Common: Artifact=100, Tool=180, Equipment=150
+Rare: Personal item=220, Rod=310, Personal accessory=360
+Extreme: Handheld implement=420, Assistive device=570
+Eagle: Walking aid=740, Mobility aid=650
+
+Word: Sun Hat
+Theme: Imported object
+Common: Clothing=100, Accessories=150, Personal effects=120
+Rare: Headwear=220, Hats=280, Protective clothing=390, Outdoor gear=320
+Extreme: Brimmed hats=520, Summer clothing=440
+Eagle: Sun-protective clothing=650
+
+Word: Baseball Cap
+Theme: Imported object
+Common: Headwear=180, Clothing=100, Textile product=140
+Rare: Clothing accessory=220, Sportswear=360, Casualwear=300
+Extreme: Cap=420, Brimmed hat=540, Sewn product=460
+Eagle: Sun-protective clothing=620
+
+Word: Beanie
+Theme: Imported object
+Common: Clothing=140, Textile product=190, Soft goods=160
+Rare: Headwear=260, Hat=330, Fashion accessory=230, Casual wear=360
+Extreme: Knitwear=580, Winter apparel=510, Outerwear=420
+
+Word: Scarf
+Theme: Imported object
+Common: Clothing=150, Wearable item=120
+Rare: Fashion accessory=290, Textile product=380, Personal effect=210, Dry goods=330
+Extreme: Neckwear=570, Wrap=490, Softlines merchandise=440
+Eagle: Haberdashery=620
+
+Word: Gloves
+Theme: Imported object
+Common: Clothing=150, Personal effects=120, Wearable items=190
+Rare: Outerwear=370, Soft goods=280, Dry goods=320, Consumer durables=230
+Extreme: Fashion accessories=430, Protective gear=520
+Eagle: Handwear=760
+
+Word: Mittens
+Theme: Imported object
+Common: Clothing=180, Personal effects=120, Wearable items=150
+Rare: Clothing accessories=380, Soft goods=220, Gloves=300
+Extreme: Outerwear=460, Protective clothing=540
+Eagle: Handwear=680, Cold-weather clothing=740
+
+Word: Belt
+Theme: Imported object
+Common: clothing=120, wearable item=100, soft goods=180
+Rare: fashion accessory=260, strap=390, dry goods=210
+Extreme: waistwear=540, haberdashery=460, clothing fastener=570
+Eagle: garment support=620
+
+Word: Suspenders
+Theme: Imported object
+Common: Wearable item=110, Apparel=160, Personal equipment=130
+Rare: Clothing accessory=280, Strap=330, Fastening device=360
+Extreme: Haberdashery=410, Garment support=580, Harness=470, Dress furnishings=440
+
+Word: Tie
+Theme: Imported object
+Common: Apparel=150, Wearable item=100
+Rare: Textile goods=250, Personal effects=200, Menswear=390, Soft goods=280
+Extreme: Clothing accessory=480
+Eagle: Neckwear=740, Haberdashery=620, Men's furnishings=680
+
+Word: Bow Tie
+Theme: Imported object
+Common: apparel=120, textile product=180, decorative item=150
+Rare: fashion accessory=260, menswear=330, personal adornment=300
+Extreme: neckwear=580, haberdashery=460, formalwear=420
+Eagle: tie=680
+
+Word: Cufflinks
+Theme: Imported object
+Common: Clothing accessory=140, Jewelry=180
+Rare: Fastener=220, Haberdashery item=390, Menswear accessory=350
+Extreme: Shirt accessory=580, Formalwear accessory=460, Clothing fastener=510, Decorative fastener=540
+Eagle: Functional jewelry=650
+
+Word: Pocket Square
+Theme: Imported object
+Common: Textile product=160, Apparel=140, Personal effects=100
+Rare: Fashion accessory=240, Decorative item=200, Dry goods=320
+Extreme: Menswear=420, Haberdashery=560, Formalwear=480
+Eagle: Handkerchief=650
+
+Word: Wallet
+Theme: Imported object
+Common: Personal effect=140, Container=180
+Rare: Fashion accessory=350, Personal accessory=250, Carrying case=310, Storage accessory=380
+Extreme: Everyday carry item=430, Card holder=590, Organizer=470
+Eagle: Money holder=640
+
+Word: Coin Purse
+Theme: Imported object
+Common: Container=100, Bag=180, Purse=150
+Rare: Personal accessory=270, Fashion accessory=380, Personal effect=220, Storage accessory=330, Money holder=300, Coin container=320
+Extreme: Carrying case=430, Everyday carry gear=510
+Eagle: Coin storage accessory=650
+
+Word: Keyring
+Theme: Imported object
+Common: Personal effect=180, Household item=140
+Rare: Personal accessory=270, Hardware item=340, Everyday carry item=390, Ring=220
+Extreme: Fastener=540, Organizing accessory=450, Connector=580
+Eagle: Key holder=650
+
+Word: Lanyard
+Theme: Imported object
+Common: wearable accessory=160, textile product=100
+Rare: strap=280, neckwear=360, carrying aid=320, holder=240
+Extreme: tether=580, cordage=460, attachment device=520
+Eagle: retention device=700
+
+Word: ID Badge Holder
+Theme: Imported object
+Common: office supply=190, container=100, holder=130
+Rare: personal accessory=240, protective case=360, document holder=320
+Extreme: card holder=470, identification equipment=580, display holder=420
+Eagle: badge accessory=650
+
+Word: Passport Holder
+Theme: Imported object
+Common: container=120
+Rare: personal accessory=250, storage accessory=320, document holder=220, stationery accessory=360
+Extreme: travel accessory=530, organizer=410, protective cover=570, document accessory=460
+Eagle: document case=650
+
+Word: Suitcase
+Theme: Imported object
+Common: container=120, personal property=160
+Rare: case=350, durable good=230, personal effects=310, storage equipment=280
+Extreme: travel equipment=480, portable storage container=540, carrying equipment=420
+Eagle: luggage=650
+
+Word: Duffel Bag
+Theme: Imported object
+Common: Bag=120, Container=100
+Rare: Luggage=280, Travel accessory=350, Fashion accessory=320, Personal effects=200, Storage equipment=250
+Extreme: Flexible container=460, Sewn product=570
+Eagle: Soft-sided luggage=680
+
+Word: Briefcase
+Theme: Imported object
+Common: Bag=100, Container=120
+Rare: Luggage=220, Carrying case=330, Personal accessory=200, Fashion accessory=360, Travel accessory=300
+Extreme: Hand luggage=450, Business accessory=580
+Eagle: Document carrier=650
+
+Word: Messenger Bag
+Theme: Imported object
+Common: bag=150, container=100
+Rare: fashion accessory=350, personal effects=220, travel goods=390
+Extreme: luggage=420, carrying case=480, soft goods=530
+Eagle: crossbody bag=690, hand luggage=620
+
+Word: Fanny Pack
+Theme: Imported object
+Common: Bag=150, Container=100, Wearable item=190, Personal effects=130
+Rare: Fashion accessory=310, Luggage=270, Soft goods=350, Carrying equipment=240, Sewn product=390
+Extreme: Pouch=430
+
+Word: Ditty Bag
+Theme: Imported object
+Common: Container=120, Soft goods=180
+Rare: Bag=220, Personal accessory=300, Storage accessory=380, Luggage=260
+Extreme: Utility bag=580, Travel accessory=450, Outdoor equipment=510
+Eagle: Nautical equipment=680
+
+Word: Toiletry Bag
+Theme: Imported object
+Common: Bag=120, Storage container=190
+Rare: Personal accessory=280, Carrying case=350, Luggage=230
+Extreme: Travel accessory=480, Organizer=410, Bathroom accessory=540, Luggage accessory=590
+Eagle: Personal-care accessory=650
+
+Word: Garment Bag
+Theme: Imported object
+Common: Bag=180, Household good=120
+Rare: Luggage=340, Storage container=240, Travel accessory=310, Carrying case=380
+Extreme: Protective cover=460, Clothing care accessory=590, Closet organizer=520
+Eagle: Soft-sided luggage=650
+
+Word: Packing Cube
+Theme: Imported object
+Common: textile product=140, sewn product=170
+Rare: bag=200, storage container=230, storage bag=350, organizer=300
+Extreme: packing aid=590, travel accessory=450
+Eagle: luggage organizer=740, clothing organizer=620
+
+Word: Neck Pillow
+Theme: Imported object
+Common: Pillow=130, Personal accessory=190
+Rare: Comfort accessory=250, Sleep accessory=340, Soft furnishing=220, Travel accessory=310, Bedding accessory=280
+Extreme: Neck support=470, Ergonomic aid=430, Positioning aid=510
+
+Word: Eye Mask
+Theme: Imported object
+Common: Personal accessory=140, Textile product=180, Wearable item=110
+Rare: Mask=240, Sleepwear=390, Headwear=280
+Extreme: Travel accessory=450, Blindfold=570
+Eagle: Sleep aid=630, Sleep accessory=690
+
+Word: Earplugs
+Theme: Imported object
+Common: Wearable accessory=150, Safety equipment=180
+Rare: Hearing protection device=300, Personal protective equipment=220, Noise-control equipment=390, Acoustic device=340
+Extreme: Acoustic attenuator=590, Medical device=460
+Eagle: Acoustic barrier=620, Acoustic filter=680
+
+Word: Travel Adapter
+Theme: Imported object
+Common: Adapter=180, Hardware=130
+Rare: Electrical equipment=220, Travel accessory=350, Consumer electronics accessory=320
+Extreme: Electrical connector=460, Wiring accessory=510, Power connector=590, Electromechanical component=420
+Eagle: Plug adapter=700
+
+Word: Power Bank
+Theme: Imported object
+Common: Electronic device=130, Electrical equipment=160
+Rare: Consumer electronics=220, Mobile-device accessory=390, Power supply=340
+Extreme: Battery pack=520, Battery charger=460, Energy storage system=580
+Eagle: Electrochemical device=650, Low-voltage electrical equipment=710
+
+Word: Wall Charger
+Theme: Imported object
+Common: Electrical device=120, Electronic device=190, Electrical appliance=160
+Rare: Consumer electronics accessory=310
+Extreme: Power supply=410, Battery charger=540, Power converter=460, Power electronics equipment=580
+Eagle: AC adapter=650, AC-to-DC converter=700
+
+Word: Charging Cable
+Theme: Imported object
+Common: Cable=100, Electrical equipment=180
+Rare: Electrical accessory=280, Electrical conductor=240
+Extreme: Power cable=500, Charging accessory=460, Cable assembly=580, Insulated cable=420
+Eagle: Electrical interconnect=640, Passive electrical component=700
+
+Word: Extension Cord
+Theme: Imported object
+Common: Electrical equipment=110
+Rare: Electrical accessory=200, Electrical cable=280, Flexible cable=360, Portable electrical equipment=320
+Extreme: Power cable=410, Cable assembly=520, Electrical interconnect=460, Power distribution equipment=580
+Eagle: Cord set=720
+
+Word: Power Strip
+Theme: Imported object
+Common: Electrical device=100
+Rare: Electrical wiring accessory=340, Low-voltage equipment=380, Portable electrical equipment=260, Electrical connector=200
+Extreme: Extension cord=450, Multi-outlet adapter=590, Plug-connected electrical equipment=520
+Eagle: Power distribution unit=650, Socket outlet assembly=720
+
+Word: Surge Protector
+Theme: Imported object
+Common: electrical device=120, protective device=190, safety equipment=170
+Rare: electrical accessory=240, power conditioning equipment=370, electrical installation equipment=280
+Extreme: circuit protection device=430, power-system protection equipment=490
+Eagle: overvoltage protection device=650, transient suppression device=720
+
+Word: Ethernet Cable
+Theme: Imported object
+Common: Cable=100, Computer accessory=180
+Rare: Network hardware=300, Signal cable=280, Telecommunications equipment=240
+Extreme: Data transmission medium=420, Local area network component=530, Electrical interconnect=460
+Eagle: Passive network component=640, Physical-layer networking component=730
+
+Word: HDMI Cable
+Theme: Imported object
+Common: Cable=100, Consumer electronics accessory=160
+Rare: Electrical cable=220, Cable assembly=380, Audiovisual equipment=200, Electrical interconnect=300
+Extreme: Interface cable=540, Signal cable=440
+Eagle: Audio-video cable=650, Digital data cable=610
+
+Word: VGA Cable
+Theme: Imported object
+Common: Cable=100, Electrical cable=180
+Rare: Computer cable=350, Computer accessory=240, Audiovisual equipment accessory=280, Signal cable=320
+Extreme: Video cable=430
+Eagle: Analog video cable=600, D-sub cable=680, RGBHV cable=750
+
+Word: Audio Cable
+Theme: Imported object
+Common: Cable=100, Electrical cable=180, Electrical component=160
+Rare: Signal cable=340, Electrical wiring=260, Transmission medium=220
+Extreme: Interconnect=520, Connectivity hardware=430, Passive component=580
+Eagle: Audio equipment accessory=680
+
+Word: Power Adapter
+Theme: Imported object
+Common: electrical equipment=140, electronic equipment=180
+Rare: power supply=320, electrical accessory=240, mains-powered equipment=210
+Extreme: power converter=410, external power supply=560, voltage converter=450, power electronics equipment=510
+Eagle: AC-to-DC converter=610
+
+Word: Light Bulb
+Theme: Imported object
+Common: Electrical device=150, Household item=100
+Rare: Light source=220, Electric lamp=330, Lighting equipment=280
+Extreme: Consumable=410, Electrical component=490, Optical component=590
+Eagle: Electrical load=680, Transducer=720
+
+Word: Halogen Bulb
+Theme: Imported object
+Common: Lighting equipment=170, Electrical device=130
+Rare: Electric lamp=220, Artificial light source=290, Electrical component=250
+Extreme: Incandescent lamp=590, Electrical load=410
+Eagle: Gas-filled lamp=660, Tungsten-filament lamp=760, Resistive load=690
+
+Word: LED Strip
+Theme: Imported object
+Common: Lighting equipment=150, Electrical equipment=120
+Rare: Artificial light source=230, Electronic assembly=280, Optoelectronic device=390
+Extreme: Solid-state lighting device=470, LED array=560, Printed circuit assembly=510
+Eagle: Linear lighting=620, LED module=680
+
+Word: Floodlight
+Theme: Imported object
+Common: Electrical equipment=150, Optical device=180, Electrical load=170
+Rare: Luminaire=310, Lighting equipment=200, Directional lighting=390, Artificial light source=240
+Extreme: Area lighting=410, High-intensity lighting=570, Light projector=450
+
+Word: Lantern
+Theme: Imported object
+Common: Human-made artifact=100, Household item=190
+Rare: Equipment=240, Tool=280, Appliance=340
+Extreme: Lamp=420, Optical device=530, Light source=460
+Eagle: Portable lighting device=650, Luminaire=720
+
+Word: Headlamp
+Theme: Imported object
+Common: Lamp=120, Light source=160
+Rare: Electrical device=200, Optical device=340, Lighting equipment=260
+Extreme: Flashlight=440, Luminaire=580, Wearable device=420, Portable lighting=510
+Eagle: Task lighting=640
+
+Word: Work Light
+Theme: Imported object
+Common: Lighting equipment=180, Electrical equipment=140
+Rare: Lamp=330, Workplace equipment=290, Artificial light source=220, Optical device=260, Energy converter=370
+Extreme: Utility lighting=570, Electrical load=430
+Eagle: Task lighting=650
+
+Word: Safety Glasses
+Theme: Imported object
+Common: Eyewear=180, Clothing accessories=100, Spectacles=160
+Rare: Personal protective equipment=330, Safety equipment=240, Optical equipment=280
+Extreme: Industrial safety equipment=580, Workwear=400
+Eagle: Eye protection equipment=760, Impact-protection equipment=680
+
+Word: Ear Muffs
+Theme: Imported object
+Common: Clothing=180, Personal effects=120, Wearable items=150
+Rare: Clothing accessories=310, Fashion accessories=350, Outdoor gear=240, Protective clothing=390
+Extreme: Headwear=420, Cold-weather gear=560
+Eagle: Earwear=650
+
+Word: Hard Hat
+Theme: Imported object
+Common: Safety equipment=140, Headgear=110
+Rare: Personal protective equipment=260, Helmets=330, Protective clothing=220, Workwear=290
+Extreme: Occupational safety equipment=440, Impact protection equipment=550
+Eagle: Head protection equipment=620, Construction safety equipment=670
+
+Word: Reflective Vest
+Theme: Imported object
+Common: Clothing=120, Upper-body clothing=170
+Rare: Vests=240, Sleeveless garments=330, Outerwear=280, Safety equipment=200
+Extreme: Personal protective equipment=510, Protective clothing=580
+Eagle: High-visibility clothing=760, Visibility aids=650
+
+Word: Dust Mask
+Theme: Imported object
+Common: Mask=120, Face covering=160, Workwear=180
+Rare: Personal protective equipment=220, Air filter=390, Filtration equipment=280, Workplace safety equipment=330, Protective clothing=250
+Extreme: Respiratory protection equipment=480, Industrial hygiene equipment=590
+
+Word: Respirator
+Theme: Imported object
+Common: Safety equipment=150, Wearable devices=180
+Rare: Personal protective equipment=250, Face masks=310, Life-safety equipment=360
+Extreme: Breathing apparatus=470, Exposure-control equipment=580, Occupational safety equipment=430
+Eagle: Industrial hygiene equipment=650, Respiratory protective equipment=740
+
+Word: Toolbox
+Theme: Imported object
+Common: Container=100, Box=160
+Rare: Storage equipment=290, Protective enclosure=350, Hardware=240
+Extreme: Carrying case=440, Workshop equipment=580, Maintenance equipment=510
+Eagle: Tool organizer=730, Tool accessory=660
+
+Word: Tool Belt
+Theme: Imported object
+Common: Equipment=100, Clothing accessories=180
+Rare: Belts=240, Workwear=350, Storage equipment=290, Organizers=390
+Extreme: Load-carrying equipment=480
+Eagle: Tool carriers=690, Tool storage=620, Utility belts=740
+
+Word: Socket Set
+Theme: Imported object
+Common: Tool=100, Hand tool=180, Hardware=130
+Rare: Tool set=250, Workshop equipment=220, Hand tool set=360
+Extreme: Mechanic's tool=480, Fastening tool=420, Automotive tool=510
+Eagle: Wrench set=650
+
+Word: Hex Key
+Theme: Imported object
+Common: tool=100, hardware=140
+Rare: hand tool=220, mechanical tool=300, non-cutting tool=380, workshop tool=320
+Extreme: wrench=560, fastening tool=440, mechanic's tool=480
+Eagle: screw-driving tool=650
+
+Word: Utility Knife
+Theme: Imported object
+Common: Tool=100, Hand tool=180, Hardware=140
+Rare: Knife=300, Cutting tool=220, Edged tool=340, General-purpose tool=280
+Extreme: Construction tool=540, Workshop tool=420
+Eagle: Craft tool=600
+
+Word: Chisel
+Theme: Imported object
+Common: Tool=100, Hand tool=160, Workshop equipment=180
+Rare: Cutting tool=300, Simple machine=220, Shaping tool=390
+Extreme: Wedge=480, Material-removal tool=570, Woodworking tool=520
+Eagle: Carving tool=650
+
+Word: Plane
+Theme: Imported object
+Common: Artifact=100, Mechanical system=150
+Rare: Vehicle=250, Machine=200, Transportation equipment=300
+Extreme: Aircraft=400, Aerospace equipment=450, Powered aircraft=550
+Eagle: Fixed-wing aircraft=700, Heavier-than-air aircraft=600
+
+Word: Caliper
+Theme: Imported object
+Common: Measuring instrument=150, Hand tool=110
+Rare: Gauge=330, Workshop tool=200, Engineering instrument=270
+Extreme: Precision instrument=420, Inspection tool=480, Length-measuring instrument=580
+Eagle: Dimensional metrology instrument=710, Contact measuring instrument=660
+
+Word: Level
+Theme: Imported object
+Common: Tool=100, Hand tool=180
+Rare: Measuring instrument=220, Construction tool=360
+Extreme: Carpentry tool=430, Masonry tool=470, Layout tool=540, Precision instrument=590
+Eagle: Alignment tool=610, Inclinometer=720
+
+Word: Chalk Line
+Theme: Imported object
+Common: Tool=100, Hand tool=180
+Rare: Construction tool=300
+Extreme: Marking tool=420, Layout tool=480, Carpentry tool=550, Woodworking tool=450, Masonry tool=580
+Eagle: Roofing tool=650, Drywall tool=600
+
+Word: Stud Finder
+Theme: Imported object
+Common: Tool=100, Hardware=140
+Rare: Hand tool=210, Construction tool=330, Home improvement tool=290
+Extreme: Detector=460, Carpentry tool=540, Inspection tool=420
+Eagle: Layout tool=610, Nondestructive testing equipment=700
+
+Word: Solder Iron
+Theme: Imported object
+Common: Tool=100, Hand tool=180
+Rare: Heating appliance=350, Workshop tool=260, Electrical equipment=220
+Extreme: Metalworking tool=480, Joining tool=560, Assembly tool=420, Soldering equipment=560
+Eagle: Electronics tool=650
+
+Word: Soldering Wire
+Theme: Imported object
+Common: Wire=180, Industrial supply=100
+Rare: Metal alloy=250, Nonferrous metal=230, Metalworking material=350, Manufacturing consumable=280
+Extreme: Joining material=420
+Eagle: Solder=720, Filler metal=600, Soldering consumable=650
+
+Word: Heat Gun
+Theme: Imported object
+Common: Tool=100, Electrical appliance=190
+Rare: Power tool=260, Heating equipment=230, Workshop equipment=300, Blower=350
+Extreme: Convection heater=520, Electric resistance heater=580, Thermal processing equipment=440
+Eagle: Hot-air tool=650
+
+Word: Caulking Gun
+Theme: Imported object
+Common: Tool=100, Hand tool=160
+Rare: Construction tool=240, Dispensing equipment=340, Building maintenance tool=300, Home improvement tool=260
+Extreme: Dispensing gun=570, Fluid handling equipment=420
+Eagle: Sealant applicator=740, Cartridge dispenser=650
+
+Word: Glue Gun
+Theme: Imported object
+Common: tool=100, electrical equipment=180
+Rare: handheld tool=240, heating device=350, power tool=280, dispensing equipment=320
+Extreme: craft tool=400, fastening tool=440, adhesive applicator=580
+Eagle: hot-melt equipment=680
+
+Word: Sandpaper
+Theme: Imported object
+Common: Abrasive=140, Tool=110, Hardware supply=180, Sheet material=160
+Rare: Surface-finishing material=350, Woodworking supply=260, Workshop consumable=310, Painting supply=240
+Extreme: Coated abrasive=560, Flexible abrasive=470
+
+Word: Wire Strippers
+Theme: Imported object
+Common: Tool=100, Hand tool=180
+Rare: Cutting tool=300, Pliers=240, Electrical tool=380, Trade tool=210
+Extreme: Electrician's tool=450, Electrical installation tool=540
+Eagle: Stripping tool=650, Wire-preparation tool=710
+
+Word: Voltage Tester
+Theme: Imported object
+Common: Tool=120, Electrical equipment=180
+Rare: Detector=350, Testing equipment=260, Hand tool=230, Measuring instrument=320, Indicator=370
+Extreme: Diagnostic equipment=430, Electrical measuring instrument=580
+Eagle: Electrical test instrument=720
+
+# Appended source: reverse-krillion-objects-331-430.csv
+# Canonical categories imported; conversational aliases omitted to preserve precise category input rules.
+
+Word: Stud Driver
+Theme: Imported object
+Common: Hand tool=100, Fastening tool=125, Installation tool=150, Threaded-fastener tool=190
+Rare: Stud installation tool=220, Assembly tool=250, Maintenance and repair tool=290, Industrial assembly tool=350
+Extreme: Automotive assembly tool=400, Model-building tool=470, Nonmarring tool=520
+
+Word: Crowbar
+Theme: Imported object
+Common: Hand tool=100, Lever=140, Prying tool=170, Opening tool=190
+Rare: Lifting tool=210, Nail-pulling tool=250, Steel tool=280, Construction tool=320, Demolition tool=370
+Extreme: Forcible-entry tool=470
+
+Word: Sledgehammer
+Theme: Imported object
+Common: Hand tool=100, Hammer=120, Striking tool=175
+Rare: Construction tool=230, Demolition tool=290, Masonry tool=350
+Extreme: Stoneworking tool=410, Metalworking tool=455, Blacksmithing tool=515, Spike-driving tool=565
+Eagle: Hand rock-drilling tool=650
+
+Word: Mallet
+Theme: Imported object
+Common: Hand tool=100, Hammer=140, Percussive hand tool=180
+Rare: Woodworking tool=240, Chisel-driving tool=290, Joinery tool=340
+Extreme: Stoneworking tool=400, Non-marring striking tool=460, Wood-headed striking tool=500, Rubber-headed striking tool=540
+Eagle: Dead-blow mallet=600, Mallet percussion beater=650
+
+Word: Anvil
+Theme: Imported object
+Common: Tool=100, Metalworking tool=125, Blacksmithing tool=155, Hand tool=185
+Rare: Forging tool=220, Metal-forming tool=260, Hot-working tool=300, Iron tool=340, Farriery tool=390
+Extreme: Smithy equipment=430
+
+Word: Vise
+Theme: Imported object
+Common: Work-holding device=100, Clamping tool=135, Hand tool=175
+Rare: Workshop tool=205, Bench-mounted tool=270, Woodworking tool=320, Metalworking tool=350, Machining workholding accessory=395
+Extreme: Drilling accessory=455, Milling accessory=490, Pipeworking tool=535, Plumbing tool=575
+
+Word: C-Clamp
+Theme: Imported object
+Common: Clamp=100, Hand tool=130, Screw clamp=170
+Rare: Workholding device=210, Portable clamping device=240, Manufacturing tool=290, Woodworking tool=330, Metalworking tool=370
+Extreme: Welding clamp=420, Carpentry tool=460, Automotive repair tool=510, Construction tool=550, DIY tool=590
+
+Word: Bar Clamp
+Theme: Imported object
+Common: Clamp=100, Hand tool=120, Workholding device=145, Adjustable clamp=180
+Rare: Woodworking tool=200, Assembly tool=230, Glue-up tool=270, Joinery tool=300, Cabinetmaking tool=330, Furniture-making tool=360
+Extreme: Metalworking tool=420
+
+Word: Sawhorse
+Theme: Imported object
+Common: Work support=100, Woodworking equipment=140, Workpiece support=180
+Rare: Carpentry equipment=210, Portable workstand=240, Sawing aid=270, Construction equipment=310, Temporary workbench base=360
+Extreme: Trestle frame=420, Horse-scaffold support=560
+
+Word: Workbench
+Theme: Imported object
+Common: Bench=130, Furniture=180
+Rare: Workshop equipment=220, Woodworking equipment=260, Carpentry equipment=300, Machining equipment=340, Metalworking equipment=380
+Extreme: Mechanical-work support equipment=420, Industrial workbench=470, Electronics assembly and repair bench=540
+
+Word: Extension Ladder
+Theme: Imported object
+Common: Ladder=100, Portable ladder=140, Non-self-supporting ladder=190
+Rare: Adjustable ladder=240, Access equipment=290, Construction equipment=340, Work-at-height equipment=390
+Extreme: Roof access equipment=440, Fire-service ground ladder=510, Fire and rescue equipment=570
+
+Word: Step Stool
+Theme: Imported object
+Common: Ladder=100, Portable ladder=160
+Rare: Self-supporting ladder=220, Access equipment=290, Elevation aid=350
+Extreme: Reach-assistance equipment=410, Workplace equipment=470, Industrial equipment=530, Warehouse equipment=590
+Eagle: Stockroom equipment=650, Stocking equipment=700
+
+Word: Wheelchock
+Theme: Imported object
+Common: Safety device=100, Vehicle safety equipment=140, Vehicle restraint=190
+Rare: Wheel immobilization device=230, Chock=270, Industrial safety equipment=350
+Extreme: Loading dock safety equipment=410, Truck and trailer equipment=450, Ground support equipment=510, Aviation safety equipment=560
+Eagle: Aircraft ground support equipment=610
+
+Word: Tow Strap
+Theme: Imported object
+Common: Strap=100, Towing equipment=150
+Rare: Automotive accessory=210, Webbing=275, Vehicle towing accessory=330, Synthetic textile product=390
+Extreme: Polyester webbing product=450, Load-bearing textile=485, Vehicle recovery equipment=515, Off-road recovery gear=590
+Eagle: Roadside emergency equipment=650
+
+Word: Jumper Cables
+Theme: Imported object
+Common: Automotive accessory=120, Automotive maintenance equipment=180
+Rare: Roadside emergency equipment=220, Automotive service equipment=280, Battery service equipment=340, Emergency preparedness supplies=390
+Extreme: Electrical cable=430, Insulated electrical wire=490, Electrical conductor assembly=550
+Eagle: Temporary battery interconnection equipment=610
+
+Word: Tire Pressure Gauge
+Theme: Imported object
+Common: Measuring instrument=100, Hand tool=140, Pressure gauge=190
+Rare: Workshop tool=220, Vehicle maintenance tool=250, Tire maintenance tool=290, Automotive service tool=330, Vehicle inspection tool=370
+Extreme: Motorcycle maintenance tool=430, Bicycle maintenance tool=470
+
+Word: Car Jack
+Theme: Imported object
+Common: Tool=100, Lifting equipment=150
+Rare: Automotive equipment=200, Automotive service equipment=250, Automotive repair tool=300, Vehicle maintenance equipment=350
+Extreme: Tire-changing equipment=400, Garage equipment=450, Portable lifting device=500
+Eagle: Roadside vehicle-emergency equipment=600
+
+Word: Spare Tire
+Theme: Imported object
+Common: Motor vehicle component=100, Automotive equipment=130, Tire=150
+Rare: Pneumatic tire=220, Rubber product=250, Replacement part=290, Vehicle maintenance item=340
+Extreme: Roadside emergency equipment=400, Temporary-use tire=460, Compact temporary spare tire=570
+Eagle: T-type temporary spare tire assembly=610
+
+Word: Funnel
+Theme: Imported object
+Common: Pouring and transfer implement=100, Kitchen utensil=160
+Rare: Automotive maintenance tool=220, Laboratory apparatus=280, Powder-transfer implement=330
+Extreme: Filtration apparatus=400, Laboratory glassware=450, Liquid-liquid separation apparatus=520, Chemical extraction apparatus=590
+Eagle: Reaction-reagent addition apparatus=660, Ship exhaust stack=720
+
+Word: Jerry Can
+Theme: Imported object
+Common: Container=100, Liquid container=130, Portable container=160, Fuel container=190
+Rare: Fuel transport container=230, Metal container=280, Fuel storage container=310, Water container=340
+Extreme: Dangerous goods packaging=410, Military equipment=460, Steel packaging=510
+
+Word: Ice Scraper
+Theme: Imported object
+Common: Tool=100, Hand tool=140, Scraping tool=170
+Rare: Vehicle accessory=210, Winter vehicle equipment=250, Snow-removal tool=290, Ice-removal tool=330, Vehicle-glass maintenance tool=390
+Extreme: Window-pane defrosting device=470, Hard-plastic hand tool=520
+
+Word: Snow Shovel
+Theme: Imported object
+Common: Shovel=100, Hand tool=150
+Rare: Snow removal equipment=200, Outdoor maintenance tool=250, Winter maintenance equipment=300, Scoop shovel=350
+Extreme: Manual snow-clearing implement=400, Pedestrian-route clearing equipment=450, Household winter-preparedness equipment=500, Ergonomic snow shovel=550
+
+Word: Garden Fork
+Theme: Imported object
+Common: Gardening tool=100, Hand tool=130, Agricultural implement=170
+Rare: Horticultural tool=210, Soil-working tool=260, Digging tool=310, Soil-aerating tool=350
+Extreme: Compost-handling tool=400, Weed-removal tool=460, Perennial-dividing tool=520, Vegetable-gardening tool=560
+Eagle: Raised-bed gardening tool=600
+
+Word: Loppers
+Theme: Imported object
+Common: Garden tool=150, Hand tool=190
+Rare: Pruning tool=220, Cutting tool=250, Pruning shears=310, Long-handled garden tool=340, Woody-plant pruning tool=390
+Extreme: Shrub-pruning tool=420, Tree-pruning tool=450, Landscape-maintenance tool=480, Orchard-pruning tool=530, Fruit-crop pruning tool=570
+
+Word: Pruning Shears
+Theme: Imported object
+Common: Garden Tool=100, Hand Tool=130, Horticultural Tool=165, Pruning Tool=195
+Rare: Manual Cutting Tool=225, Landscape Maintenance Tool=270, Tree-Pruning Tool=315, Shrub-Pruning Tool=350, Flower-Cutting Tool=390
+Extreme: Deadheading Tool=430
+
+Word: Hedge Trimmer
+Theme: Imported object
+Common: Garden tool=100, Cutting tool=120, Power tool=140, Lawn and garden equipment=160, Outdoor power equipment=190
+Rare: Powered hand tool=210, Horticultural equipment=230, Landscaping tool=260, Pruning tool=290, Hedge and shrub maintenance equipment=320, Plant-shaping tool=350
+
+Word: Leaf Blower
+Theme: Imported object
+Common: Gardening tool=100, Outdoor power equipment=130, Power tool=160, Blower=180
+Rare: Air-moving equipment=230, Landscape maintenance equipment=260, Grounds-maintenance equipment=290, Lawn and garden equipment=320, Yard-cleanup equipment=350, Leaf and debris clearing tool=390
+
+Word: Lawnmower
+Theme: Imported object
+Common: Lawn care equipment=120, Grass-cutting machine=145, Garden equipment=180
+Rare: Turf-care equipment=225, Lawn and garden machinery=270, Outdoor power equipment=305, Consumer product=350, Landscaping equipment=390
+Extreme: Grounds-maintenance equipment=430, Horticultural equipment=485, Rotary or reel cutting apparatus=540
+Eagle: Pedestrian-controlled or ride-on turf-care machine=610
+
+Word: Chainsaw
+Theme: Imported object
+Common: Power tool=100, Saw=120, Cutting tool=150
+Rare: Portable power saw=220, Woodworking tool=260, Forestry equipment=300, Tree-care tool=330, Logging equipment=370
+Extreme: Tree-felling tool=410, Pruning tool=440, Firewood-cutting tool=470, Land-clearing equipment=510, Professional logging tool=560
+
+Word: Tiller
+Theme: Imported object
+Common: Agricultural equipment=110, Garden tool=140, Agricultural implement=180
+Rare: Tillage implement=230, Rotary tiller=280, Soil-preparation equipment=340, Cultivation equipment=390
+Extreme: Weed-management implement=440, Primary tillage equipment=490, Secondary tillage equipment=510, Tractor-mounted implement=550
+
+Word: Sprinkler
+Theme: Imported object
+Common: Watering device=100, Irrigation equipment=120, Garden equipment=160
+Rare: Landscape irrigation equipment=200, Lawn care equipment=230, Agricultural irrigation equipment=280, Overhead irrigation equipment=320, Fire protection equipment=350, Fire suppression equipment=390
+Extreme: Building fire-safety system component=430, Automatic fire-protection device=470
+
+Word: Rain Barrel
+Theme: Imported object
+Common: Water storage container=100, Rainwater harvesting equipment=180
+Rare: Water conservation device=250, Stormwater runoff reduction measure=320, Green infrastructure practice=390
+Extreme: Landscape irrigation water source=460, Non-potable water storage system=520, Stormwater management practice=580
+Eagle: Garden watering equipment=650, Outdoor utility water source=720
+
+Word: Compost Bin
+Theme: Imported object
+Common: Composting Equipment=100, Garden Equipment=170
+Rare: Waste Management Equipment=230, Recycling Equipment=290, Container=340, Residential Composting System=390
+Extreme: Organic Waste Processing Equipment=450, Yard-Waste Management Equipment=520, Food-Scrap Recycling Equipment=590
+Eagle: Soil-Amendment Production Equipment=660
+
+Word: Birdhouse
+Theme: Imported object
+Common: Bird nesting box=100, Artificial nesting structure=160
+Rare: Cavity-nesting habitat substitute=220, Wildlife habitat feature=270, Nesting habitat supplement=310, Wildlife habitat management tool=350, Bird conservation aid=390
+Extreme: Bird monitoring aid=440, Citizen-science nest-monitoring resource=500, Environmental education project material=550, Backyard birding feature=590
+
+Word: Bird Feeder
+Theme: Imported object
+Common: Animal feeder=110, Wildlife feeding equipment=160
+Rare: Backyard birding equipment=210, Garden accessory=250, Nature observation aid=300, Outdoor recreation equipment=340, Wildlife-support resource=390
+Extreme: Nature-learning resource=440, Citizen-science observation aid=500, Wildlife photography aid=550
+
+Word: Flower Pot
+Theme: Imported object
+Common: Plant container=100, Gardening container=150
+Rare: Horticultural growing vessel=200, Indoor plant planter=250, Outdoor garden planter=300, Decorative plant container=350
+Extreme: Patio and terrace garden container=400, Balcony garden container=450, Windowsill plant container=500, Limited-space gardening container=550
+Eagle: Moveable garden vessel=600
+
+Word: Plant Saucer
+Theme: Imported object
+Common: Gardening accessory=100, Plant-container accessory=125, Container-gardening accessory=150, Horticultural supply=180
+Rare: Plant-drainage accessory=220, Water-collection tray=250, Plant-pot tray=280, Houseplant-care accessory=310, Surface-protection accessory=350
+Extreme: Greenhouse and nursery supply=410, Humidity-tray accessory=470
+
+Word: Trellis
+Theme: Imported object
+Common: Garden structure=150, Plant support=190
+Rare: Climbing-plant support=240, Latticework structure=280, Garden screen=330, Landscape design feature=370
+Extreme: Vertical gardening support=410, Privacy screen=450, Vegetable crop support=490, Freestanding garden structure=530, Wall-mounted garden structure=570
+Eagle: Garden focal point=610
+
+Word: Garden Stake
+Theme: Imported object
+Common: Garden equipment=100, Plant support=140, Horticultural supplies=180
+Rare: Plant-training aid=230, Vegetable-crop support=300, Perennial plant support=350, Climbing-plant support=390
+Extreme: Tree-establishment support=440, Garden anchoring hardware=490, Landscape installation material=550
+
+Word: Pruning Saw
+Theme: Imported object
+Common: Saw=100, Hand tool=120, Cutting tool=140, Hand saw=170
+Rare: Garden tool=200, Pruning tool=240, Horticultural tool=290, Arborist tool=360
+Extreme: Orchard tool=410, Fruit-tree care tool=440
+
+Word: Wheelbarrow Wheel
+Theme: Imported object
+Common: Wheel=100, Mechanical component=130, Axle-mounted component=160, Ground-rolling component=190
+Rare: Vehicle component=230, Material-handling equipment component=270, Garden equipment component=310, Construction equipment component=350, Hand-propelled transport equipment component=390
+Extreme: Utility-cart and hand-truck replacement wheel=450
+
+Word: Seed Packet
+Theme: Imported object
+Common: Gardening supply=120, Agricultural input=180
+Rare: Horticultural product=220, Plant propagation material=270, Packaged seed=320, Seed container=360
+Extreme: Retail merchandise=400, Garden-planning aid=440, Planting-instruction resource=480, Horticultural educational material=530, Seed-saving and storage aid=570
+
+Word: Fertilizer Bag
+Theme: Imported object
+Common: Bag=100, Packaging=120, Container=140
+Rare: Flexible packaging=220, Agricultural packaging=250, Industrial packaging=290, Retail packaging=330, Transport packaging=360, Labeled product packaging=390
+Extreme: Woven sack=460, Plastic packaging=490, Garden-supply packaging=520
+
+Word: Potting Soil Bag
+Theme: Imported object
+Common: Gardening supply=100, Horticultural growing medium=145, Potting mix=180
+Rare: Container gardening medium=225, Plant root substrate=285, Soilless growing medium=335, Houseplant growing medium=390
+Extreme: Greenhouse growing medium=445, Nursery growing medium=500, Seed propagation medium=570
+Eagle: Transplant growing medium=620
+
+Word: Garden Kneeler
+Theme: Imported object
+Common: Gardening equipment=100, Kneeling pad=160, Garden seat=190
+Rare: Stool=230, Folding stool=290, Outdoor furniture=340, Ergonomic aid=390
+Extreme: Knee-protection aid=450, Yard-work equipment=510, Household-task aid=560
+
+Word: Hose Nozzle
+Theme: Imported object
+Common: Nozzle=100, Hose accessory=155
+Rare: Water-distribution equipment=210, Watering equipment=265, Irrigation equipment=325, Gardening equipment=375
+Extreme: Lawn and garden maintenance equipment=425, Cleaning equipment=490, Vehicle-washing equipment=550
+Eagle: Fire-protection equipment=640
+
+Word: Hose Reel
+Theme: Imported object
+Common: Reel=100, Hose storage equipment=130, Hose management equipment=180
+Rare: Fluid-handling equipment=240, Gardening equipment=280, Watering equipment=320, Irrigation equipment=380
+Extreme: Outdoor equipment=430, Agricultural equipment=500, Industrial equipment=550
+Eagle: Fire-protection equipment=620
+
+Word: Pruning Knife
+Theme: Imported object
+Common: Hand tool=100, Knife=150
+Rare: Cutting tool=200, Garden tool=250, Horticultural tool=300, Pruning tool=350
+Extreme: Plant maintenance tool=400, Harvesting tool=450, Grafting tool=550
+Eagle: Plant propagation tool=600, Vineyard tool=650
+
+Word: Budding Knife
+Theme: Imported object
+Common: Knife=100, Hand tool=130, Cutting tool=160
+Rare: Garden tool=200, Horticultural tool=240, Agricultural tool=280, Plant propagation tool=340, Grafting tool=390
+Extreme: Budding tool=450, Fruit-tree budding tool=510, Viticulture tool=570
+
+Word: Tree Caliper
+Theme: Imported object
+Common: Measuring instrument=100, Hand tool=130, Caliper instrument=180
+Rare: Diameter measuring instrument=220, Forestry tool=280, Tree measurement equipment=330
+Extreme: Forest inventory equipment=400, Timber cruising equipment=460, Arboriculture equipment=510, Nursery stock grading equipment=560
+
+Word: Soil Thermometer
+Theme: Imported object
+Common: Measuring instrument=100, Thermometer=120, Gardening tool=150
+Rare: Agricultural measurement instrument=220, Horticultural tool=230, Soil measurement instrument=260, Contact thermometer=300, Field measurement equipment=340, Planting decision aid=390
+Extreme: Crop establishment monitoring tool=470
+
+Word: Soil pH Meter
+Theme: Imported object
+Common: Measuring instrument=100, Electronic instrument=150
+Rare: pH meter=200, Soil-testing equipment=250, Agricultural equipment=300, Gardening tool=350
+Extreme: Analytical instrument=400, Portable measuring instrument=450, Field-testing instrument=500, Agricultural soil-monitoring instrument=550
+
+Word: Shovels
+Theme: Imported object
+Common: Hand tools=110, Digging tools=160, Material-handling tools=190
+Rare: Garden tools=230, Landscaping tools=270, Construction tools=310, Agricultural tools=350, Snow-removal tools=390
+Extreme: Excavation tools=430, Firefighting tools=560
+Eagle: Forestry tools=600
+
+Word: Pickaxe
+Theme: Imported object
+Common: Hand tool=100, Digging tool=140, Earth-breaking tool=190
+Rare: Rock-breaking tool=240, Excavation tool=300, Mining tool=360
+Extreme: Striking tool=420, Construction tool=470, Trail-maintenance tool=540
+Eagle: Archaeological excavation tool=620
+
+Word: Mattock
+Theme: Imported object
+Common: Hand tool=100, Digging tool=150
+Rare: Grubbing tool=200, Cutting tool=250, Combination tool=300, Agricultural tool=350
+Extreme: Trail-work tool=400, Forestry tool=450, Wildland firefighting tool=500, Iron-and-wood tool=550
+
+Word: Post Hole Digger
+Theme: Imported object
+Common: Hand tool=100, Garden tool=130, Digging tool=150, Manual digging tool=190
+Rare: Landscaping tool=220, Agricultural tool=260, Earthworking tool=300, Fencing tool=340, Construction tool=380
+Extreme: Post-setting tool=420, Clamshell digger=460, Narrow-hole digging tool=490
+
+Word: Scythe
+Theme: Imported object
+Common: Hand tool=100, Agricultural tool=150
+Rare: Long-handled tool=200, Harvesting tool=250, Mowing tool=300, Grass-cutting tool=350
+Extreme: Haymaking tool=400, Grain-harvesting tool=450, Cutting tool=500
+Eagle: Symbol of death=600
+
+Word: Sickle
+Theme: Imported object
+Common: Hand tool=100, Cutting tool=140, Agricultural tool=180
+Rare: Harvesting tool=220, Gardening tool=280, Cereal-harvesting tool=340
+Extreme: Grass-cutting tool=400, Haymaking tool=460, Short-handled tool=520, Metal-bladed tool=560
+
+Word: Pitchfork
+Theme: Imported object
+Common: Tool=100, Hand tool=150, Agricultural tool=190
+Rare: Long-handled fork=230, Hay-handling tool=270, Forage-handling tool=320, Straw-handling tool=360
+Extreme: Compost-turning tool=410, Loose-material handling tool=450, Manure-handling tool=500, Metal-tined tool=520
+
+Word: Hay Bale
+Theme: Imported object
+Common: Agricultural product=100, Livestock feed=130, Forage crop product=160, Roughage=190
+Rare: Dried plant material=220, Agricultural commodity=260, Winter livestock feed=300, Equine forage=340, Animal bedding=390
+Extreme: Mulch material=430, Erosion and sediment control material=490, Decorative agricultural material=540
+
+Word: Silo
+Theme: Imported object
+Common: Storage structure=110, Bulk material storage structure=170
+Rare: Agricultural storage structure=210, Grain storage structure=250, Silage storage structure=290, Animal feed storage structure=330, Food product storage structure=380
+Extreme: Industrial bulk-material storage structure=430, Tower silo=490, Bunker silo=540, Silo bag=590
+Eagle: Concrete stave silo=650, Steel silo=690
+
+Word: Tractor
+Theme: Imported object
+Common: Vehicle=100, Land vehicle=130, Off-road vehicle=170
+Rare: Agricultural machinery=200, Agricultural implement carrier=240, Traction vehicle=270, Mobile power unit=300, Industrial and construction machinery=340, Construction equipment=370
+Extreme: Landscaping and grounds-care equipment=410
+
+Word: Combine Harvester
+Theme: Imported object
+Common: Agricultural machinery=110, Harvesting equipment=130, Grain-harvesting machinery=180
+Rare: Cereal-harvesting machinery=220, Seed-crop harvesting machinery=270, Crop-cutting machinery=300, Threshing machinery=340, Grain-separation machinery=390
+Extreme: Grain-cleaning machinery=430, Bulk grain-handling equipment=480
+
+Word: Seed Drill
+Theme: Imported object
+Common: Agricultural machinery=100, Agricultural implement=140, Seed-sowing machine=180
+Rare: Agricultural planting equipment=230, Seeding equipment=280, Crop-establishment equipment=340
+Extreme: Seed-placement equipment=400, Row-seeding equipment=460, Metered-seed planting equipment=520, Controlled-depth seeding equipment=590
+Eagle: Conservation planting equipment=660, Grassland seeding equipment=720
+
+Word: Plow
+Theme: Imported object
+Common: Agricultural implement=100, Agricultural equipment=130, Tillage implement=170
+Rare: Soil-working implement=210, Primary tillage implement=250, Soil preparation equipment=290, Seedbed preparation equipment=330, Weed-management implement=380
+Extreme: Crop-residue management implement=430, Agricultural mechanization equipment=480
+
+Word: Cultivator
+Theme: Imported object
+Common: Agricultural machinery=110, Agricultural implement=140, Tillage equipment=190
+Rare: Secondary tillage implement=270, Soil-cultivation equipment=330, Mechanical weed-control equipment=390
+Extreme: Cultivating-tillage implement=440, Seedbed-preparation equipment=500, Crop-row cultivation equipment=570
+Eagle: Steel-toothed farm implement=630, Tractor-operated tillage implement=680
+
+Word: Baler
+Theme: Imported object
+Common: Farm machinery=100, Agricultural machinery=130, Agricultural field equipment=170
+Rare: Baling machinery=210, Haymaking equipment=250, Forage harvesting equipment=300, Tractor-drawn agricultural implement=340, Post-harvest agricultural equipment=390
+Extreme: Crop-residue collection equipment=470, Forage conservation equipment=520, Livestock-feed handling equipment=570
+Eagle: Agricultural biomass handling equipment=620
+
+Word: Milk Pail
+Theme: Imported object
+Common: Container=100, Liquid container=150, Pail=180
+Rare: Food storage container=220, Farm equipment=280, Dairy equipment=330, Dairy tool=380
+Extreme: Milking equipment=420, Food-handling equipment=460, Metal container=500, Tinware=560
+
+Word: Churn
+Theme: Imported object
+Common: Machine=100, Food processing equipment=140, Dairy tool=180
+Rare: Food preparation equipment=220, Dairy processing equipment=270, Butter-making equipment=320, Farm equipment=370
+Extreme: Cream-processing equipment=420, Household utensil=470, Manual processing equipment=520
+
+Word: Butter Mold
+Theme: Imported object
+Common: Kitchen utensil=100, Food mold=140, Food-preparation tool=180
+Rare: Dairy equipment=230, Wooden kitchenware=290, Butter stamp=350
+Extreme: Tableware accessory=410, Food presentation tool=470, Agricultural implement=530, Product-identification tool=590
+Eagle: Folk craft object=660, Antique kitchen collectible=720
+
+Word: Egg Carton
+Theme: Imported object
+Common: Packaging=100, Container=150
+Rare: Food Packaging=200, Protective Packaging=250, Transport Packaging=300, Retail Packaging=350
+Extreme: Agricultural Packaging=400, Egg Packaging=450, Food-Handling Equipment=550
+Eagle: Molded-Pulp Packaging Product=600
+
+Word: Fruit Basket
+Theme: Imported object
+Common: Household container=100, Kitchen container=130, Basket=160, Food container=190
+Rare: Produce storage container=230, Food display vessel=270, Food transport container=320, Food-gathering container=370
+Extreme: Table serving vessel=410, Gift container=480, Decorative household accessory=530
+
+Word: Produce Crate
+Theme: Imported object
+Common: Container=100, Packaging=130, Food Packaging=165
+Rare: Produce Packaging=200, Agricultural Harvest Container=250, Transport Packaging=290, Reusable Packaging=340, Storage Container=390
+Extreme: Bulk Packaging=440, Ventilated Produce Container=490, Returnable Transport Packaging=550
+Eagle: Produce Display Packaging=600
+
+Word: Wicker Basket
+Theme: Imported object
+Common: Container=100, Basket=120, Woven article=180
+Rare: Plant-fiber craft=220, Storage basket=260, Carrying basket=290, Food-gathering basket=340, Food-preparation basket=380
+Extreme: Household storage basket=430, Agricultural produce basket=480, Basketry craftwork=520, Willow-work basket=570
+
+Word: Shopping Basket
+Theme: Imported object
+Common: Container=100, Basket=120, Portable carrying container=160
+Rare: Hand-carried goods carrier=200, Shopping aid=240, Retail equipment=290, Consumer carrying equipment=340, In-store carrying equipment=390
+Extreme: Supermarket customer equipment=440, Retail customer touchpoint=540
+
+Word: Shopping Cart
+Theme: Imported object
+Common: Cart=100, Wheeled carrier=150
+Rare: Goods-handling equipment=210, Retail equipment=260, Supermarket equipment=300, Shopping aid=340, Reusable handling equipment=390
+Extreme: Customer self-service equipment=440, Merchandise transport device=490, Retail customer-experience equipment=550
+
+Word: Cash Register
+Theme: Imported object
+Common: Business machine=100, Retail equipment=130, Office equipment=170
+Rare: Sales-recording device=200, Cash-handling equipment=230, Checkout equipment=270, Point-of-sale equipment=310, Calculating machine=350
+Extreme: Supermarket checkout equipment=430, Restaurant sales equipment=500
+
+Word: Barcode Scanner
+Theme: Imported object
+Common: Input device=100, Hardware device=130, Optical scanner=160, Image scanner=190
+Rare: Automatic identification and data capture equipment=240, Inventory management equipment=300, Retail point-of-sale equipment=350
+Extreme: Logistics and supply-chain tracking equipment=410, Warehouse operations equipment=460, Healthcare identification and tracking equipment=520, Manufacturing process equipment=570
+
+Word: Receipt Printer
+Theme: Imported object
+Common: Printer=100, Computer hardware=120, Computer peripheral=160, Output device=180
+Rare: Business equipment=220, Non-impact printer=260, Thermal printer=300, Point-of-sale equipment=340, POS printer=380
+Extreme: Retail equipment=420, Hospitality equipment=470
+
+Word: Credit Card Reader
+Theme: Imported object
+Common: Electronic device=100, Payment terminal=160
+Rare: Point-of-sale equipment=220, Point-of-interaction device=290, Payment acceptance equipment=340, Electronic payment processing equipment=390
+Extreme: Merchant equipment=440, Retail technology equipment=500, Checkout equipment=550
+Eagle: Small-business equipment=610
+
+Word: Shopping Bag
+Theme: Imported object
+Common: Bag=100, Carrier bag=150, Retail packaging=180
+Rare: Grocery bag=200, Paper bag=250, Plastic bag=250, Reusable bag=300, Single-use bag=300, Tote bag=330
+Extreme: Cotton bag=400, Polypropylene bag=420, Promotional bag=500
+
+Word: Price Tag
+Theme: Imported object
+Common: Label=100, Retail merchandise marking=150
+Rare: Retail labeling supply=200, Paper product=240, Printed information material=280, Adhesive label=330, Hang tag=380
+Extreme: Product information label=430, Retail pricing communication=490, Point-of-purchase communication material=550
+
+Word: Security Tag
+Theme: Imported object
+Common: Retail security device=120, Theft-deterrent device=170
+Rare: Electronic article surveillance component=230, Hard merchandise tag=290, Reusable retail security device=350
+Extreme: Apparel-protection device=400, Footwear-protection device=460, Accessory-protection device=520, Bottle-protection device=580
+Eagle: RFID-enabled merchandise tag=650
+
+Word: Display Stand
+Theme: Imported object
+Common: Display Fixture=130, Retail Fixture=170
+Rare: Merchandising Equipment=220, Point-of-Purchase Display=280, Advertising Display=320, Freestanding Display=350
+Extreme: Exhibition Mount=420, Artifact Support=470, Retail Sign Stand=500, Countertop Display=540, Floor Display=570
+Eagle: Corrugated Fiberboard Display=620
+
+Word: Mannequin
+Theme: Imported object
+Common: Human-form model=100, Retail display fixture=125, Apparel display form=150
+Rare: Visual merchandising prop=200, Window-display figure=225, Garment-fitting form=250, Museum costume-display support=300, Fashion-exhibition mount=325
+Extreme: Artist's lay figure=400, Drapery-study model=450
+
+Word: Hanger Stand
+Theme: Imported object
+Common: Clothing rack=100, Clothing storage=150, Clothes organizer=190
+Rare: Wardrobe storage accessory=250, Household storage product=300, Bedroom organization product=340, Entryway organization product=390
+Extreme: Freestanding garment storage=440, Apparel display fixture=570
+Eagle: Retail clothing merchandising equipment=630
+
+Word: Shopping Trolley
+Theme: Imported object
+Common: Wheeled vehicle=100, Hand-propelled vehicle=150, Handcart=190
+Rare: Goods-transport cart=230, Material-handling equipment=280, Shopping aid=320, Retail equipment=360
+Extreme: Supermarket equipment=410, Self-service retail equipment=460, Nesting hand cart=520
+
+Word: Coin Counter
+Theme: Imported object
+Common: Machine=100, Coin-processing equipment=145, Cash-handling equipment=190
+Rare: Office machine=245, Cash-reconciliation equipment=300, Banking equipment=355
+Extreme: Retail equipment=410, Grocery-store equipment=465, Vending-business equipment=520, Gaming and casino equipment=590
+Eagle: Cash-in-transit processing equipment=660
+
+Word: Safe
+Theme: Imported object
+Common: Container=100, Storage equipment=115, Lockable enclosure=135, Cabinet=155, Security equipment=180
+Rare: Storage furniture=205, Metal container=235, Valuables-protection equipment=275, Residential security equipment=320, Commercial security equipment=350, Document-storage equipment=390
+Extreme: Museum collections storage furniture=520
+
+Word: Deposit Box
+Theme: Imported object
+Common: Box=100, Storage container=120, Metal container=190
+Rare: Security container=230, Safe=260, Lockable container=300, Banking service equipment=350, Valuables storage=390
+Extreme: Document storage container=420, Fire-resistant container=470, Jewelry storage=510, Collectibles storage=550, Family keepsake storage=590
+
+Word: Lockbox
+Theme: Imported object
+Common: Lockable container=100, Security equipment=150, Key storage device=190
+Rare: Access-control device=250, Combination-lock container=300, Key-management equipment=350
+Extreme: Real-estate access equipment=430, Wall-mounted key box=470, Portable security container=520
+Eagle: Group lockout device=680
+
+Word: Padlock
+Theme: Imported object
+Common: Lock=100, Security device=130, Portable lock=170
+Rare: Key-operated lock=220, Combination lock=260, Locker lock=300, Outdoor lock=340, Marine lock=390
+Extreme: Brass-bodied lock=430, Laminated-body lock=470, Workplace safety lockout padlock=540
+Eagle: High-security padlock=610
+
+Word: Combination Lock
+Theme: Imported object
+Common: Lock=100, Security device=150
+Rare: Physical access control device=200, Keyless lock=250, Dial-operated lock=300, Mechanical lock=350
+Extreme: Padlock=400, Locker lock=450, Luggage lock=500, Bicycle security lock=550
+
+Word: Bicycle Lock
+Theme: Imported object
+Common: Lock=100, Bicycle accessory=150, Cycling equipment=190
+Rare: Security device=230, Anti-theft device=270, Portable security equipment=310, Bicycle parking security equipment=350
+Extreme: Chain lock=430, U-lock=450, Cable lock=470, Folding lock=510
+
+Word: Door Knob
+Theme: Imported object
+Common: Door hardware=100, Door handle=150
+Rare: Building hardware=200, Architectural hardware=250, Door furniture=300, Door operating hardware=350
+Extreme: Latch-operating device=400, Interior door hardware=450, Decorative door hardware=500, Door locking hardware=550
+
+Word: Door Handle
+Theme: Imported object
+Common: Door hardware=100, Building hardware=130, Architectural hardware=170
+Rare: Door furniture=220, Door pull=270, Operable part=310, Door opening control=360
+Extreme: Door-lever hardware=410, Accessibility-relevant operable hardware=470, Door-set furniture=530
+Eagle: Fire-door assembly hardware=610
+
+Word: Deadbolt
+Theme: Imported object
+Common: Lock=100, Door lock=150
+Rare: Door hardware=200, Building hardware=230, Security hardware=280, Door fastener=320, Keyed lock=360
+Extreme: Mechanical lock=400, Bolt lock=450, Auxiliary lock=510, Residential door security hardware=560, Commercial door security hardware=590
+
+Word: Door Hinge
+Theme: Imported object
+Common: Mechanical device=100, Door hardware=120, Building hardware=150, Mechanical connector=180
+Rare: Pivot joint component=220, Furniture hardware=280, Gate hardware=330, Window hardware=370
+Extreme: Access-panel hardware=420, Industrial enclosure hardware=500, Security door hardware=560
+Eagle: Electrified door hardware=620
+
+Word: Door Stop
+Theme: Imported object
+Common: Door hardware=100, Building hardware=150, Architectural hardware=180
+Rare: Door-control device=220, Door-protection device=250, Door-holding device=290, Building accessory=320, Safety-supporting building hardware=360
+Extreme: Commercial-building hardware=400, Residential-building hardware=420, Public-building hardware=450, Industrial-building hardware=480
+
+Word: Window Latch
+Theme: Imported object
+Common: Latch=100, Window hardware=140, Building hardware=190
+Rare: Architectural hardware=230, Window sash fastener=280, Window locking device=330, Security hardware=390
+Extreme: Window closure hardware=450, Window weather-sealing hardware=510, Window storm-protection hardware=580
