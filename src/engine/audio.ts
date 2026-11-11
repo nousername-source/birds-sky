@@ -12,8 +12,6 @@ export class Audio {
   private master: GainNode
   private music: GainNode
   private sfx: GainNode
-  private musicTimer = 0
-  private musicOn = false
   private buffers = new Map<string, AudioBuffer>()
 
   constructor() {
@@ -83,39 +81,7 @@ export class Audio {
     }
   }
 
-  /** Generative ambient pad: slow chord changes on a pentatonic set, scheduled ahead of time. */
-  startMusic(): void {
-    if (this.musicOn) return
-    this.musicOn = true
-    const chords = [[220, 277.2, 329.6], [196, 246.9, 293.7], [174.6, 220, 261.6], [196, 261.6, 329.6]]
-    let bar = 0
-    const schedule = () => {
-      if (!this.musicOn) return
-      const t = this.ctx.currentTime + 0.05
-      const chord = chords[bar % chords.length]
-      for (const f of chord) {
-        for (const detune of [-6, 6]) {
-          const o = this.ctx.createOscillator()
-          const g = this.ctx.createGain()
-          o.type = 'sine'
-          o.frequency.value = f / 2
-          o.detune.value = detune
-          g.gain.setValueAtTime(0.0001, t)
-          g.gain.linearRampToValueAtTime(0.05, t + 1.2)
-          g.gain.linearRampToValueAtTime(0.0001, t + 4.2)
-          o.connect(g).connect(this.music)
-          o.start(t)
-          o.stop(t + 4.4)
-        }
-      }
-      bar += 1
-      this.musicTimer = window.setTimeout(schedule, 3600)
-    }
-    schedule()
-  }
-
-  stopMusic(): void {
-    this.musicOn = false
-    clearTimeout(this.musicTimer)
-  }
+  /** The low-frequency ambient pad is disabled for the public deployment build. */
+  startMusic(): void {}
+  stopMusic(): void {}
 }

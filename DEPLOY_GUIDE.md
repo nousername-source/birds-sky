@@ -1,6 +1,6 @@
 # Publish BirdsSky on Netlify or Vercel
 
-This bundle is prepared for static hosting. Its production bird and scenery models are served from `public/assets/models` (no Manus-only storage URLs), and `pnpm build` generates the static site in `dist/`. No environment variables or backend service are needed.
+This bundle is prepared for static hosting. Its production bird and scenery models are served from `public/assets/models` (no Manus-only storage URLs). The low-frequency ambient music pad is disabled to remove the bass-heavy drone; short UI and gameplay sound effects remain. `pnpm build` generates the static site in `dist/`. No environment variables or backend service are needed.
 
 ## Before you start
 
@@ -8,14 +8,14 @@ You need the ZIP file extracted on your computer, a GitHub account, and either a
 
 ## Step 1 — Extract the ZIP
 
-Unzip `birdssky-deploy.zip` into a folder, for example `Documents/birdssky-deploy`. Open that folder and make sure you can see `package.json`, `pnpm-lock.yaml`, `netlify.toml`, `vercel.json`, and `public/`.
+Unzip `birdssky-deploy-no-pad.zip` into a folder, for example `Documents/birdssky-deploy`. Open that folder and make sure you can see `package.json`, `pnpm-lock.yaml`, `netlify.toml`, `vercel.json`, and `public/`.
 
 ## Step 2 — Put the project on GitHub
 
 1. Install and open **GitHub Desktop**; sign in to your GitHub account.
 2. On GitHub.com, create a new empty repository named `birdssky` (or another name). Do not initialize it with a README, license, or `.gitignore`.
 3. In GitHub Desktop choose **File → Clone repository**, select the new repository, and clone it to a folder you can find.
-4. Copy the *contents* of the extracted `birdssky-deploy` folder into the cloned repository folder. Do not copy a nested `birdssky-deploy` folder; `package.json` should be at the repository root.
+4. Copy the *contents* of the extracted `birdssky-deploy-no-pad` folder into the cloned repository folder. Do not copy a nested folder; `package.json` should be at the repository root.
 5. Return to GitHub Desktop. You should see the project files listed as changes. Enter a summary such as `Prepare BirdsSky for public hosting`, click **Commit to main**, then click **Push origin**.
 
 If GitHub warns about a large file, do not remove files from `public/assets/models`; those are the game’s local 3D models. The deploy ZIP omits unnecessary catalog candidates and installed dependencies.
